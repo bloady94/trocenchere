@@ -18,14 +18,14 @@ public class Utilisateur {
 	private Integer credit;
 	private boolean administrateur;
 	private List<ArticleVendu> listeArticles = new ArrayList<>();
-	private List<Encheres> listeEncheres = new ArrayList<>();
+	private List<Enchere> listeEncheres = new ArrayList<>();
 
 	// Les constructeurs (Un avec tous les attributs et un deuxieme sans
 	// no_utilisateur) :
 
 	public Utilisateur(Integer no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur,
-			List<ArticleVendu> listeArticles, List<Encheres> listeEncheres) {
+			List<ArticleVendu> listeArticles, List<Enchere> listeEncheres) {
 		super();
 		this.no_utilisateur = no_utilisateur;
 		this.pseudo = pseudo;
@@ -45,7 +45,7 @@ public class Utilisateur {
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur,
-			List<ArticleVendu> listeArticles, List<Encheres> listeEncheres) {
+			List<ArticleVendu> listeArticles, List<Enchere> listeEncheres) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -169,11 +169,11 @@ public class Utilisateur {
 		this.listeArticles = listeArticles;
 	}
 
-	public List<Encheres> getListeEncheres() {
+	public List<Enchere> getListeEncheres() {
 		return listeEncheres;
 	}
 
-	public void setListeEncheres(List<Encheres> listeEncheres) {
+	public void setListeEncheres(List<Enchere> listeEncheres) {
 		this.listeEncheres = listeEncheres;
 	}
 
