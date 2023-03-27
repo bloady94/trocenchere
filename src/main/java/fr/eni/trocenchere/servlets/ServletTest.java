@@ -29,6 +29,7 @@ public class ServletTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	System.out.println("la Team ça marche");
+	System.out.println("Eva Gössinger");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
