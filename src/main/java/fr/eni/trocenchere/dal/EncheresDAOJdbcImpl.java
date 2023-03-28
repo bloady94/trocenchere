@@ -115,16 +115,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			if(e.getMessage().contains("CK_AVIS_note"))
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_AVIS_NOTE_ECHEC);
-			}
-			else
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-			}
-			throw businessException;
 		}
 
 	}
@@ -150,16 +140,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			if(e.getMessage().contains("CK_AVIS_note"))
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_AVIS_NOTE_ECHEC);
-			}
-			else
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-			}
-			throw businessException;
 		}
 
 	}
@@ -187,16 +167,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			BusinessException businessException = new BusinessException();
-			if(e.getMessage().contains("CK_AVIS_note"))
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_AVIS_NOTE_ECHEC);
-			}
-			else
-			{
-				businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-			}
-			throw businessException;
 		}
 		
 	}
