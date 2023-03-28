@@ -69,7 +69,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			e.printStackTrace();
 		}
 	}
-			
+			  
 		
 
 	@Override
