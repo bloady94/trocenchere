@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.trocenchere.BusinessException;
+import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.dal.EncheresDAOJdbcImpl;
+
 /**
  * Servlet implementation class ServletTestJDBCImplInsert
  */
@@ -26,8 +30,15 @@ public class ServletTestJDBCImplInsert extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Utilisateur corentin = new Utilisateur("corentinLeCaramel","ROBIN", "Corentin", "jadoreJPP@gmail.com", "0612121212", "rue des Blasés", "35000", "RENNES", "motdepasse", 0, true);
+		EncheresDAOJdbcImpl dao = new EncheresDAOJdbcImpl();
+		System.out.println(corentin);
+		try {
+			dao.insert_utilisateur(corentin);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
