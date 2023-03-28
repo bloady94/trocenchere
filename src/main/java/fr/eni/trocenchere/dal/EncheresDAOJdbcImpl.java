@@ -1,5 +1,11 @@
 package fr.eni.trocenchere.dal;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+
+
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Enchere;
@@ -35,10 +41,54 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	@Override
 	public void insert_utilisateur(Utilisateur utilisateur) throws BusinessException {
-		// TODO Auto-generated method stub
+
+		if (utilisateur == null) {
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw businessException;
+		}
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_UTILISATEUR, PreparedStatement.RETURN_GENERATED_KEYS);
+
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(3, utilisateur.getPrenom());
+			pstmt.setString(4, utilisateur.getEmail());
+			pstmt.setString(5, utilisateur.getTelephone());
+			pstmt.setString(6, utilisateur.getRue());
+			pstmt.setString(7, utilisateur.getCode_postal());
+			pstmt.setString(8, utilisateur.getVille());
+			pstmt.setString(9, utilisateur.getMot_de_passe());
+			pstmt.setInt(10, utilisateur.getCredit());
+			pstmt.setBoolean(11, utilisateur.isAdministrateur());
+			
+			pstmt.executeUpdate();
+
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				utilisateur.setNo_utilisateur(rs.getInt(1));
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			BusinessException businessException = new BusinessException(); 
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC); 
+			throw businessException;
+		}
+		for (ArticleVendu av : utilisateur.getListeArticles()) {
+			insert_articleVendu(av, utilisateur.getNo_utilisateur());
+		}
+		
+		for (Enchere av : utilisateur.getListeEncheres()) {
+			insert_enchere(av, utilisateur.getNo_utilisateur());
+		}
 
 	}
 
+	
 	@Override
 	public void insert_articleVendu(ArticleVendu articleVendu) throws BusinessException {
 		// TODO Auto-generated method stub
