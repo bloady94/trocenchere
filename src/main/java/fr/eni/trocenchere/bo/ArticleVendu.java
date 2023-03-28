@@ -20,12 +20,38 @@ public class ArticleVendu {
 		super();
 	}
 
+	public ArticleVendu(String nom_article, String description, LocalDate debutEnchere, LocalDate finEnchere,
+			Integer prix_initial, Integer prix_final) {
+		this.nom_article = nom_article;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prix_initial = prix_initial;
+		this.prix_final = prix_final;
+	}
+
+
 
 	public ArticleVendu(Integer no_article, String nom_article, String description, LocalDate debutEnchere,
 			LocalDate finEnchere, Integer prix_initial, Integer prix_final, Integer no_utilisateur,
 			Integer no_categorie) {
 		super();
 		this.no_article = no_article;
+		this.nom_article = nom_article;
+		this.description = description;
+		this.debutEnchere = debutEnchere;
+		this.finEnchere = finEnchere;
+		this.prix_initial = prix_initial;
+		this.prix_final = prix_final;
+		this.no_utilisateur = no_utilisateur;
+		this.no_categorie = no_categorie;
+	}
+
+	
+
+	public ArticleVendu(String nom_article, String description, LocalDate debutEnchere, LocalDate finEnchere,
+			Integer prix_initial, Integer prix_final, Integer no_utilisateur, Integer no_categorie) {
+		super();
 		this.nom_article = nom_article;
 		this.description = description;
 		this.debutEnchere = debutEnchere;

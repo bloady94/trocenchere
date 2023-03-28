@@ -17,8 +17,12 @@ public class Categorie {
 			this.libelle = libelle;
 			this.listeArticles = listeArticles;
 		}
-
 		
+		public Categorie(String libelle) {
+			super();
+			this.libelle = libelle;
+		}
+
 		public Categorie(Integer no_categorie, String libelle) {
 			this.no_categorie = no_categorie;
 			this.libelle = libelle;

@@ -10,7 +10,7 @@ import fr.eni.trocenchere.bo.Utilisateur;
 public interface EncheresDAO {
 	
 	public void insert_utilisateur(Utilisateur utilisateur) throws BusinessException;
-	public void insert_articleVendu(ArticleVendu articleVendu) throws BusinessException;
+	public void insert_articleVendu(ArticleVendu articleVendu,  Integer Utilisateur_no_utilisateur, Integer Categorie_no_categorie) throws BusinessException;
 	public void insert_enchere(Enchere enchere, Integer Utilisateur_no_utilisateur, Integer ArticleVendu_no_article) throws BusinessException;
 	public void insert_retrait(Retrait retrait, Integer ArticleVendu_no_article) throws BusinessException;
 	public void insert_categorie(Categorie categorie) throws BusinessException;
