@@ -65,6 +65,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			pstmt.setBoolean(11, utilisateur.isAdministrateur());
 			
 			pstmt.executeUpdate();
+			
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
