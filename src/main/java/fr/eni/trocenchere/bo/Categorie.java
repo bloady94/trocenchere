@@ -5,35 +5,30 @@ import java.util.List;
 
 public class Categorie {
 
-		private Integer no_categorie;
+		private Integer noCategorie;
 		private String libelle;
 		private List<ArticleVendu> listeArticles = new ArrayList<>();
 		
 		public Categorie() {
 		}
 
-		public Categorie(Integer no_categorie, String libelle, List<ArticleVendu> listeArticles) {
-			this.no_categorie = no_categorie;
+		public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> listeArticles) {
+			this.noCategorie = noCategorie;
 			this.libelle = libelle;
 			this.listeArticles = listeArticles;
 		}
 		
 		public Categorie(String libelle) {
-			super();
 			this.libelle = libelle;
 		}
 
-		public Categorie(Integer no_categorie, String libelle) {
-			this.no_categorie = no_categorie;
-			this.libelle = libelle;
+
+		public Integer getNoCategorie() {
+			return noCategorie;
 		}
 
-		public Integer getNo_categorie() {
-			return no_categorie;
-		}
-
-		public void setNo_categorie(Integer no_categorie) {
-			this.no_categorie = no_categorie;
+		public void setNoCategorie(Integer noCategorie) {
+			this.noCategorie = noCategorie;
 		}
 
 		public String getLibelle() {
@@ -54,7 +49,7 @@ public class Categorie {
 
 		@Override
 		public String toString() {
-			return "Categorie [no_categorie=" + no_categorie + ", libelle=" + libelle + "]";
+			return "Categorie [no_categorie=" + noCategorie + ", libelle=" + libelle + "]";
 		}
 		
 		

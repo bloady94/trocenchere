@@ -4,77 +4,47 @@ import java.time.LocalDate;
 
 public class ArticleVendu {
 	
-	private Integer no_article;
-	private String nom_article;
+	private Integer noArticle;
+	private String nomArticle;
 	private String description;
 	private LocalDate debutEnchere;
 	private LocalDate finEnchere;
-	private Integer prix_initial ;
-	private Integer prix_final ;
-	private Utilisateur no_utilisateur; 
-	private Categorie no_categorie;
+	private Integer prixInitial ;
+	private Integer prixFinal ;
+	private Utilisateur utilisateur; 
+	private Categorie categorie;
 	
 
 	
 	public ArticleVendu() {
-		super();
 	}
 
-	public ArticleVendu(String nom_article, String description, LocalDate debutEnchere, LocalDate finEnchere,
-			Integer prix_initial, Integer prix_final) {
-		this.nom_article = nom_article;
+
+	public ArticleVendu(String nomArticle, String description, LocalDate debutEnchere, LocalDate finEnchere,
+			Integer prixInitial, Integer prixFinal, Utilisateur utilisateur, Categorie categorie) {
+		this.nomArticle = nomArticle;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
-		this.prix_initial = prix_initial;
-		this.prix_final = prix_final;
+		this.prixInitial = prixInitial;
+		this.prixFinal = prixFinal;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
 
-
-	public ArticleVendu(Integer no_article, String nom_article, String description, LocalDate debutEnchere,
-			LocalDate finEnchere, Integer prix_initial, Integer prix_final, Utilisateur no_utilisateur,
-			Categorie no_categorie) {
-		super();
-		this.no_article = no_article;
-		this.nom_article = nom_article;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prix_initial = prix_initial;
-		this.prix_final = prix_final;
-		this.no_utilisateur = no_utilisateur;
-		this.no_categorie = no_categorie;
+	public Integer getNoArticle() {
+		return noArticle;
+	}
+	public void setNoArticle(Integer noArticle) {
+		this.noArticle = noArticle;
 	}
 
-	
-
-	public ArticleVendu(String nom_article, String description, LocalDate debutEnchere, LocalDate finEnchere,
-			Integer prix_initial, Integer prix_final, Utilisateur no_utilisateur, Categorie no_categorie) {
-		super();
-		this.nom_article = nom_article;
-		this.description = description;
-		this.debutEnchere = debutEnchere;
-		this.finEnchere = finEnchere;
-		this.prix_initial = prix_initial;
-		this.prix_final = prix_final;
-		this.no_utilisateur = no_utilisateur;
-		this.no_categorie = no_categorie;
+	public String getNomArticle() {
+		return nomArticle;
 	}
-
-
-	public Integer getNo_article() {
-		return no_article;
-	}
-	public void setNo_article(Integer no_article) {
-		this.no_article = no_article;
-	}
-
-	public String getNom_article() {
-		return nom_article;
-	}
-	public void setNom_article(String nom_article) {
-		this.nom_article = nom_article;
+	public void setNomArticle(String nomArticle) {
+		this.nomArticle = nomArticle;
 	}
 
 	public String getDescription() {
@@ -98,41 +68,41 @@ public class ArticleVendu {
 		this.finEnchere = finEnchere;
 	}
 	
-	public Integer getPrix_initial() {
-		return prix_initial;
+	public Integer getPrixInitial() {
+		return prixInitial;
 	}
-	public void setPrix_initial(Integer prix_initial) {
-		this.prix_initial = prix_initial;
-	}
-
-	public Integer getPrix_final() {
-		return prix_final;
-	}
-	public void setPrix_final(Integer prix_final) {
-		this.prix_final = prix_final;
+	public void setPrixInitial(Integer prixInitial) {
+		this.prixInitial = prixInitial;
 	}
 
-	public Utilisateur getNo_utilisateur() {
-		return no_utilisateur;
+	public Integer getPrixFinal() {
+		return prixFinal;
 	}
-	public void setNo_utilisateur(Utilisateur no_utilisateur) {
-		this.no_utilisateur = no_utilisateur;
+	public void setPrixFinal(Integer prixFinal) {
+		this.prixFinal = prixFinal;
 	}
 
-	public Categorie getNo_categorie() {
-		return no_categorie;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
-	public void setNo_categorie(Categorie no_categorie) {
-		this.no_categorie = no_categorie;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 
 	@Override
 	public String toString() {
-		return "ArticleVendu [no_article=" + no_article + ", nom_article=" + nom_article + ", description="
+		return "ArticleVendu [no_article=" + noArticle + ", nom_article=" + nomArticle + ", description="
 				+ description + ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prix_initial="
-				+ prix_initial + ", prix_final=" + prix_final + ", no_utilisateur=" + no_utilisateur + ", no_categorie="
-				+ no_categorie + "]";
+				+ prixInitial + ", prix_final=" + prixFinal + ", utilisateur=" + utilisateur + ", categorie="
+				+ categorie + "]";
 	}
 
 

@@ -37,41 +37,42 @@ public class ServletTestJDBCImplInsert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur corentin = new Utilisateur("corentinLeCaramel","ROBIN", "Corentin", "jadoreJPP@gmail.com", "0612121212", "rue des Blasés", "35000", "RENNES", "motdepasse", 0, true);
 		EncheresDAOJdbcImpl dao = new EncheresDAOJdbcImpl();
-//		System.out.println(corentin);
-//		try {
-//			dao.insert_utilisateur(corentin);
-//		} catch (BusinessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		EncheresDAOJdbcImpl dao2 = new EncheresDAOJdbcImpl();
-//		
+		System.out.println(corentin);
+		try {
+			dao.insert_utilisateur(corentin);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		EncheresDAOJdbcImpl dao2 = new EncheresDAOJdbcImpl();
+		
 		Categorie electromenager = new Categorie("Electroménager");
 		Categorie auto = new Categorie("Autos/Motos/Vélos");
 		Categorie jardinage = new Categorie("Jardinage");
 		Categorie jouet = new Categorie("Jouets");
 		Categorie vetement = new Categorie("Vêtements");
-//		
-//		
-//		System.out.println(electromenager);
-//		try {
-//			dao2.insert_categorie(vetement);
-//			dao2.insert_categorie(electromenager);
-//			dao2.insert_categorie(auto);
-//			dao2.insert_categorie(jardinage);
-//			dao2.insert_categorie(jouet);
-//		} catch (BusinessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+		
+		System.out.println(electromenager);
+		try {
+			dao2.insert_categorie(vetement);
+			dao2.insert_categorie(electromenager);
+			dao2.insert_categorie(auto);
+			dao2.insert_categorie(jardinage);
+			dao2.insert_categorie(jouet);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		EncheresDAOJdbcImpl dao3 = new EncheresDAOJdbcImpl();
-		ArticleVendu drogueDuBonheur = new ArticleVendu("LSD", "Petite pilule du bonheur :)", LocalDate.now(), LocalDate.of(2023, 3, 29), 100, 220);
+		ArticleVendu drogueDuBonheur = new ArticleVendu("LSD", "Petite pilule du bonheur :)", LocalDate.now(), LocalDate.of(2023, 3, 29), 100, 220, corentin,  electromenager);
+
 		System.out.println(drogueDuBonheur);
 		
 		try {
-			dao3.insert_articleVendu(drogueDuBonheur, corentin.getNo_utilisateur(), jouet.getNo_categorie());
+			dao3.insert_articleVendu(drogueDuBonheur);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
