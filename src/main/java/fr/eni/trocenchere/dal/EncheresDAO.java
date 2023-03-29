@@ -18,8 +18,6 @@ public interface EncheresDAO {
 	
 	public void delete_utilisateur(Utilisateur utilisateur) throws BusinessException;
 	public void delete_articleVendu(ArticleVendu articleVendu) throws BusinessException;
-	public void delete_enchere(Enchere enchere) throws BusinessException;
-	public void delete_retrait(Retrait retrait) throws BusinessException;
 	
 	
 	public void update_utilisateur(Utilisateur utilisateur) throws BusinessException;
