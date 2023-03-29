@@ -36,7 +36,7 @@ public class ServletProfil extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
 			}
-		RequestDispatcher rd = request.getRequestDispatcher("/profil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/profil.jsp");
 		rd.forward(request, response);
 	}
 
