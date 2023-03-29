@@ -17,7 +17,7 @@ public interface EncheresDAO {
 
 	public void insert_utilisateur(Utilisateur utilisateur) throws BusinessException;
 	public void update_utilisateur(Utilisateur utilisateur) throws BusinessException;
-	public void select_utilisateur(Utilisateur utilisateur) throws BusinessException;
+	public Utilisateur select_utilisateur(Utilisateur utilisateur) throws BusinessException;
 	public void delete_utilisateur(Utilisateur utilisateur) throws BusinessException;
 
 

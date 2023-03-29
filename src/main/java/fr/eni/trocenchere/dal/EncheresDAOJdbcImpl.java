@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Categorie;
@@ -16,7 +15,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	private static final String INSERT_UTILISATEUR = "INSERT INTO utilisateur (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) "
 													+"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String INSERT_ARTICLEVENDU = "INSERT INTO articlevendu (nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categeorie) "
+	private static final String INSERT_ARTICLEVENDU = "INSERT INTO articlevendu (nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie) "
 													+ "VALUES (?,?,?,?,?,?,?,?)";
 	
 	private static final String INSERT_ENCHERE = "INSERT INTO enchere (date_enchere, montant_enchere, Utilisateur_no_utilisateur, ArticleVendu_no_article) VALUES(?,?,?,?)";
@@ -25,17 +24,17 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	
 	private static final String INSERT_CATEGORIE = "INSERT INTO categorie (libelle) VALUES (?) ";
 	
-	private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur (no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) WHERE no_utilisateur";
+	private static final String DELETE_UTILISATEUR = "DELETE FROM utilisateur (no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) WHERE no_utilisateur = ?";
 	
-	private static final String DELETE_ARTICLEVENDU = "DELETE FROM articlevendu (no_article, nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categeorie)WHERE ArticleVendu_no_article";
+	private static final String DELETE_ARTICLEVENDU = "DELETE FROM articlevendu (no_article, nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categeorie)WHERE no_article = ?";
 			
-	private static final String UPDATE_UTILISATEUR = "UPDATE utilisateur SET (pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=?) WHERE no_utilisateur";
+	private static final String UPDATE_UTILISATEUR = "UPDATE utilisateur SET (pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=?, credit=?, administrateur=?) WHERE no_utilisateur = ?";
 
-	private static final String UPDATE_ENCHERE = "UPDATE enchere SET (date_enchere=?, montant_enchere=?, Utilisateur_no_utilisateur=?, ArticleVendu_no_article=?) WHERE ArticleVendu_no_article";
+	private static final String UPDATE_ENCHERE = "UPDATE enchere SET (date_enchere=?, montant_enchere=?, Utilisateur_no_utilisateur=?, ArticleVendu_no_article=?) WHERE ArticleVendu_no_article = ?";
 	
-	private static final String SELECT_UTILISATEUR= "SELECT utilisateur (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) WHERE no_utilisateur";
+	private static final String SELECT_UTILISATEUR= "SELECT utilisateur (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) WHERE no_utilisateur = ?";
 	
-	private static final String SELECT_ARTICLEVENDU = "SELECT articlevendu (nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categeorie) WHERE no_article";
+	private static final String SELECT_ARTICLEVENDU = "SELECT articlevendu (nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categeorie) WHERE no_article = ?";
 	
 	
 
@@ -58,9 +57,9 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			pstmt.setString(4, utilisateur.getEmail());
 			pstmt.setString(5, utilisateur.getTelephone());
 			pstmt.setString(6, utilisateur.getRue());
-			pstmt.setString(7, utilisateur.getCode_postal());
+			pstmt.setString(7, utilisateur.getCodePostal());
 			pstmt.setString(8, utilisateur.getVille());
-			pstmt.setString(9, utilisateur.getMot_de_passe());
+			pstmt.setString(9, utilisateur.getMotDePasse());
 			pstmt.setInt(10, utilisateur.getCredit());
 			pstmt.setBoolean(11, utilisateur.isAdministrateur());
 			
@@ -69,7 +68,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
-				utilisateur.setNo_utilisateur(rs.getInt(1));
+				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
 		} catch (Exception e) {
 			
@@ -86,52 +85,60 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	@Override
 	public void insert_articleVendu(ArticleVendu articleVendu) throws BusinessException{
 		
-		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement pstmt = con.prepareStatement(INSERT_ARTICLEVENDU, PreparedStatement.RETURN_GENERATED_KEYS);
-		
-			
-			pstmt.setString(1, articleVendu.getNom_article());
-			pstmt.setString(2, articleVendu.getDescription());
-			pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDebutEnchere()));
-			pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getFinEnchere()));
-			pstmt.setInt(5,  articleVendu.getPrix_initial());
-			pstmt.setInt(6,  articleVendu.getPrix_final());
-			pstmt.setInt(7,  articleVendu.getNo_utilisateur());
-			pstmt.setInt(8,  articleVendu.getNo_categorie());
-			pstmt.executeUpdate();
-			
-			ResultSet rs = pstmt.getGeneratedKeys();		
-			if(rs.next()) {
-				articleVendu.setNo_article(rs.getInt(1));
-			}
-		} catch (Exception  e) {
-			e.printStackTrace();
-		}
-	}
-			  
-		
-
-	@Override
-	public void insert_enchere(Enchere enchere, Integer Utilisateur_no_utilisateur, Integer ArticleVendu_no_article) throws BusinessException {
-		if(enchere==null)
+		if(articleVendu==null)
 		{
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 			throw businessException;
 		}
 		
+		Integer Utilisateur_no_utilisateur = articleVendu.getUtilisateur().getNoUtilisateur();
+		Integer Categorie_no_categorie = articleVendu.getCategorie().getNoCategorie();
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = con.prepareStatement(INSERT_ARTICLEVENDU, PreparedStatement.RETURN_GENERATED_KEYS);
+		
+			
+			pstmt.setString(1, articleVendu.getNomArticle());
+			pstmt.setString(2, articleVendu.getDescription());
+			pstmt.setDate(3, java.sql.Date.valueOf(articleVendu.getDebutEnchere()));
+			pstmt.setDate(4, java.sql.Date.valueOf(articleVendu.getFinEnchere()));
+			pstmt.setInt(5,  articleVendu.getPrixInitial());
+			pstmt.setInt(6,  articleVendu.getPrixFinal());
+			pstmt.setInt(7,  Utilisateur_no_utilisateur);
+			pstmt.setInt(8,  Categorie_no_categorie);
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();		
+			if(rs.next()) {
+				articleVendu.setNoArticle(rs.getInt(1));
+			}
+		} catch (Exception  e) {
+			e.printStackTrace();
+		}
+	}
+			  
+	@Override
+	public void insert_enchere(Enchere enchere) throws BusinessException {
+		if(enchere==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw businessException;
+		}
+		Integer Utilisateur_no_utilisateur = enchere.getUtilisateur().getNoUtilisateur();
+		Integer ArticleVendu_no_article = enchere.getArticle().getNoArticle();
 		try(Connection cnx = ConnectionProvider.getConnection())
 		{
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDate_enchere()));
-			pstmt.setInt(2, enchere.getMontant_enchere());
+			pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere()));
+			pstmt.setInt(2, enchere.getMontantEnchere());
 			pstmt.setInt(3, Utilisateur_no_utilisateur);
 			pstmt.setInt(4, ArticleVendu_no_article);
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if(rs.next())
 			{
-				enchere.setNo_enchere(rs.getInt(1));
+				enchere.setNoEnchere(rs.getInt(1));
 			}
 		}
 		catch(Exception e)
@@ -142,19 +149,19 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 	}
 
 	@Override
-	public void insert_retrait(Retrait retrait, Integer ArticleVendu_no_article) throws BusinessException {
+	public void insert_retrait(Retrait retrait) throws BusinessException {
 		if(retrait==null)
 		{
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 			throw businessException;
 		}
-		
+		Integer ArticleVendu_no_article = retrait.getArticle().getNoArticle();
 		try(Connection cnx = ConnectionProvider.getConnection())
 		{
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_RETRAIT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, retrait.getRue());
-			pstmt.setString(2, retrait.getCode_postal());
+			pstmt.setString(2, retrait.getCodePostal());
 			pstmt.setString(3, retrait.getVille());
 			pstmt.setInt(4, ArticleVendu_no_article);
 			pstmt.executeUpdate();
@@ -183,7 +190,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if(rs.next())
 			{
-				categorie.setNo_categorie(rs.getInt(1));
+				categorie.setNoCategorie(rs.getInt(1));
 			}
 		}
 		catch(Exception e)
@@ -195,44 +202,136 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	@Override
 	public void delete_utilisateur(Utilisateur utilisateur) throws BusinessException {
-		// TODO Auto-generated method stub
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_UTILISATEUR);
+
+			pstmt.setInt(1, utilisateur.getNoUtilisateur());
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.SUPPRESSION_LISTE_ERREUR);
+//			throw businessException;
+		}
 
 	}
 
 	@Override
 	public void delete_articleVendu(ArticleVendu articleVendu) throws BusinessException {
-		// TODO Auto-generated method stub
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-	}
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE_ARTICLEVENDU);
 
-	@Override
-	public void delete_enchere(Enchere enchere) throws BusinessException {
-		// TODO Auto-generated method stub
+			pstmt.setInt(1, articleVendu.getNoArticle());
+			pstmt.executeUpdate();
 
-	}
-
-	@Override
-	public void delete_retrait(Retrait retrait) throws BusinessException {
-		// TODO Auto-generated method stub
+		} catch (Exception e) {
+			e.printStackTrace();
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.SUPPRESSION_LISTE_ERREUR);
+//			throw businessException;
+		}
 
 	}
 
 	@Override
 	public void update_utilisateur(Utilisateur utilisateur) throws BusinessException {
-		// TODO Auto-generated method stub
+
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
+
+			pstmt.setString(1, utilisateur.getPseudo());
+			pstmt.setString(2, utilisateur.getNom());
+			pstmt.setString(7, utilisateur.getCodePostal());
+			pstmt.setString(8, utilisateur.getVille());
+			pstmt.setString(9, utilisateur.getMotDePasse());
+			pstmt.setInt(10, utilisateur.getCredit());
+			pstmt.setBoolean(11, utilisateur.isAdministrateur());
+			
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.SUPPRESSION_LISTE_ERREUR);
+//			throw businessException;
+		}
 
 	}
 
 	@Override
 	public void update_enchere(Enchere enchere) throws BusinessException {
-		// TODO Auto-generated method stub
+		
+		Integer Utilisateur_no_utilisateur = enchere.getUtilisateur().getNoUtilisateur();
+		Integer ArticleVendu_no_article = enchere.getArticle().getNoArticle();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+
+			pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere()));
+			pstmt.setInt(2, enchere.getMontantEnchere());
+			pstmt.setInt(3, Utilisateur_no_utilisateur);
+			pstmt.setInt(4, ArticleVendu_no_article);
+			
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+//			BusinessException businessException = new BusinessException();
+//			businessException.ajouterErreur(CodesResultatDAL.SUPPRESSION_LISTE_ERREUR);
+//			throw businessException;
+		}
 
 	}
 
 	@Override
-	public void select_utilisateur(Utilisateur utilisateur) throws BusinessException {
-		// TODO Auto-generated method stub
-
+	public Utilisateur select_utilisateur(Utilisateur utilisateur) throws BusinessException {
+		Utilisateur utilisateurTest = new Utilisateur();
+		try(Connection cnx = ConnectionProvider.getConnection())
+        {
+            PreparedStatement pstmt = cnx.prepareStatement(SELECT_UTILISATEUR);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+            	Integer utilisateurNo = rs.getInt("no_utilisateur");
+                String utilisateurPseudo = rs.getString("pseudo");
+                String utilisateurNom = rs.getString("nom");
+                String utilisateurPrenom = rs.getString("prenom");
+                String utilisateurEmail = rs.getString("email");
+                String utilisateurTelephone = rs.getString("telephone");
+                String utilisateurRue = rs.getString("rue");
+                String utilisateurCodePostal = rs.getString("code_postal");
+                String utilisateurVille = rs.getString("ville");
+                String utilisateurMotDePasse = rs.getString("mot_de_passe");
+                Integer utilisateurCredit = rs.getInt("credit");
+                Boolean utilisateurAdministrateur = rs.getBoolean("administrateur");
+                
+                if(!utilisateurNo.equals(utilisateurTest.getNoUtilisateur())){
+                    utilisateurTest = new Utilisateur();
+                    utilisateurTest.setPseudo(utilisateurPseudo); // 4 lignes factorisables dans une fonction à part
+                    utilisateurTest.setNom(utilisateurNom);
+                    utilisateurTest.setPrenom(utilisateurPrenom);
+                    utilisateurTest.setEmail(utilisateurEmail);
+                    utilisateurTest.setTelephone(utilisateurTelephone);
+                    utilisateurTest.setRue(utilisateurRue);
+                    utilisateurTest.setCodePostal(utilisateurCodePostal);
+                    utilisateurTest.setVille(utilisateurVille);
+                    utilisateurTest.setMotDePasse(utilisateurMotDePasse);
+                    utilisateurTest.setCredit(utilisateurCredit);
+                    utilisateurTest.setAdministrateur(utilisateurAdministrateur);
+                }
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+            BusinessException businessException = new BusinessException();
+            businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+            throw businessException;
+        }
+		return  utilisateurTest;
 	}
 
 	@Override
