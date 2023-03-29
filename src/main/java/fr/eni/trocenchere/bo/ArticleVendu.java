@@ -11,8 +11,8 @@ public class ArticleVendu {
 	private LocalDate finEnchere;
 	private Integer prix_initial ;
 	private Integer prix_final ;
-	private Integer no_utilisateur; 
-	private Integer no_categorie;
+	private Utilisateur no_utilisateur; 
+	private Categorie no_categorie;
 	
 
 	
@@ -33,8 +33,8 @@ public class ArticleVendu {
 
 
 	public ArticleVendu(Integer no_article, String nom_article, String description, LocalDate debutEnchere,
-			LocalDate finEnchere, Integer prix_initial, Integer prix_final, Integer no_utilisateur,
-			Integer no_categorie) {
+			LocalDate finEnchere, Integer prix_initial, Integer prix_final, Utilisateur no_utilisateur,
+			Categorie no_categorie) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
@@ -50,7 +50,7 @@ public class ArticleVendu {
 	
 
 	public ArticleVendu(String nom_article, String description, LocalDate debutEnchere, LocalDate finEnchere,
-			Integer prix_initial, Integer prix_final, Integer no_utilisateur, Integer no_categorie) {
+			Integer prix_initial, Integer prix_final, Utilisateur no_utilisateur, Categorie no_categorie) {
 		super();
 		this.nom_article = nom_article;
 		this.description = description;
@@ -112,17 +112,17 @@ public class ArticleVendu {
 		this.prix_final = prix_final;
 	}
 
-	public Integer getNo_utilisateur() {
+	public Utilisateur getNo_utilisateur() {
 		return no_utilisateur;
 	}
-	public void setNo_utilisateur(Integer no_utilisateur) {
+	public void setNo_utilisateur(Utilisateur no_utilisateur) {
 		this.no_utilisateur = no_utilisateur;
 	}
 
-	public Integer getNo_categorie() {
+	public Categorie getNo_categorie() {
 		return no_categorie;
 	}
-	public void setNo_categorie(Integer no_categorie) {
+	public void setNo_categorie(Categorie no_categorie) {
 		this.no_categorie = no_categorie;
 	}
 
