@@ -51,8 +51,11 @@ public class Retrait {
 
 		@Override
 		public String toString() {
-			return "Retrait [rue=" + rue + ", code_postal=" + codePostal + ", ville=" + ville + "]";
+			return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", article=" + article.getNomArticle()
+					+ "]";
 		}
+
+
 		
 		
 }
