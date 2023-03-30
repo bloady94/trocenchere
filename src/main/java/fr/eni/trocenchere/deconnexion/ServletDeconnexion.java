@@ -27,7 +27,7 @@ public class ServletDeconnexion extends HttpServlet {
 	    if (session != null) {
 	        session.invalidate();
 	    }
-	    response.sendRedirect("/trocenchere/src/main/webapp/jsp/accueil.jsp");
+	    response.sendRedirect("/trocenchere/src/main/webapp/jsp/index.jsp");
 		
 	}
 
