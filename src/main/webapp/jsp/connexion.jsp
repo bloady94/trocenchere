@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Se connecter</title>
 </head>
+
 <body>
 <h1>ENI-Enchères</h1>
 
 	<div>
-		<form method="get" action="./ServletConnexion">
+		<form method="post" action="/trocenchere/ServletConnexion">
 	
 			<div>
 			<label for="identifiant">Identifiant :</label>
