@@ -241,7 +241,7 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_UTILISATEUR);
-
+			//Préciser dans la fonction à quel niveau faire la modification (numéro id de l'utilisateur)
 			pstmt.setString(1, utilisateur.getPseudo());
 			pstmt.setString(2, utilisateur.getNom());
 			pstmt.setString(7, utilisateur.getCodePostal());
