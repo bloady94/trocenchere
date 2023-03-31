@@ -11,7 +11,7 @@
 	<h1>ENI-Enchères</h1>
 	
 	<div>
-		<form method="get" action="./Mettre le nom de la servlet">
+		<form method="get" action="./ServletTestInscription">
 			<div>
 				<label for="pseudo">Pseudo :</label>
 					<input type="text" name="pseudo" /><br>
@@ -20,13 +20,13 @@
 					<input type="text" name="prenom" /><br>
 							
 				<label for="telephone">Téléphone :</label>
-					<input type="text" name="telephone" /><br>
+					<input type="tel" name="telephone" /><br>
 							
 				<label for="codePostal">Code postal :</label>
 					<input type="text" name="codePostal" /><br>
 							
 				<label for="motDePasse">Mot de passe :</label>
-					<input type="text" name="motDePasse" /><br>
+					<input type="password" name="motDePasse" /><br>
 			</div>
 			
 			
@@ -44,14 +44,20 @@
 					<input type="text" name="ville" /><br>
 							
 				<label for="conformationMDP">Confirmation :</label>
-					<input type="text" name="conformationMDP" /><br>
+					<input type="password" name="confirmationMDP" /><br>
 			</div>
 			
+			 <form method="post" action="./inscription.jsp">
 			<input type="submit" value="Créer" />
+			  </form>
+			
 			
 		</form>
 		
+		 <form method="post" action="./inscription.jsp">
 		<a href="#"> <input type="submit" value="Créer un compte" /></a>
+			  </form>
+			
 			
 	</div>
 	
