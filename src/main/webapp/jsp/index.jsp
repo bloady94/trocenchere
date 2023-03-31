@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Accueil</title>
 </head>
+
 <body>
 <header>
 <h1>ENI - Enchères</h1>
