@@ -49,7 +49,7 @@ public class ServletConnexion extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException { 
 
 		// On récupère les données entrées par l'utilisateur dans la page JSP
 		String identifiant = request.getParameter("identifiant");
@@ -59,6 +59,7 @@ public class ServletConnexion extends HttpServlet {
 		
 		user.setPseudo(identifiant);
 		user.setMotDePasse(motDePasse);
+		
 		
 		// Création de dao de type ConnexionManager, On insère dedans l'instance de la singleton.
 		ConnexionManager dao = ConnexionSing.getInstance();
