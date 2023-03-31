@@ -35,9 +35,9 @@ public class InscriptionManager {
 		}
 		
 		//vérifier la conformité des saisies (par rapport à un modèle ou à une taille maxi)
-		this.verifierFormatEmail(motDePasse, businessException);
-		this.verifierFormatEmail(email, businessException);
-		this.verifierFormatEmail(telephone, businessException);
+		this.verifierFormatEmailMDP(motDePasse, businessException);
+		this.verifierFormatEmailMDP(email, businessException);
+		this.verifierFormatTelephone(telephone, businessException);
 		
 		this.verifierTailleChamps(pseudo, 30, businessException);
 		this.verifierTailleChamps(nom, 30, businessException);
@@ -54,7 +54,7 @@ public class InscriptionManager {
 		
 		
 		this.verifierUnicitePseudo(pseudo, businessException);
-		this.verifierFormatEmail(email, businessException);
+		this.verifierFormatEmailMDP(email, businessException);
 		if (businessException.hasErreurs()) {
 			throw businessException;
 		}
@@ -75,21 +75,40 @@ public class InscriptionManager {
 		return utilisateur;
 	}
 
+	private void verifierFormatEmailMDP(String email, BusinessException businessException) {
+		Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+		Matcher matcher = pattern.matcher(email);
+		return;
+		
+	}
+	
+	public boolean validateEmail(String email) {
+	    // Expression régulière pour vérifier le format de l'email
+	    String pattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+	    
+	    // Vérifier si l'email correspond au format
+	    Pattern regex = Pattern.compile(pattern);
+	    Matcher matcher = regex.matcher(email);
+	    
+	    return matcher.matches();
+	}
+	
+	
 	private void verifierUnicitePseudo(String pseudo, BusinessException businessException) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private void verifierTailleChamps(String pseudo, int  i, BusinessException businessException) {
-		int longueur = pseudo.length();
-	    return;
+	private void verifierTailleChamps(String champs, int  i, BusinessException businessException) {
+		int longueur = champs.length();
 		
 	}
 
-	private void verifierFormatEmail(String email, BusinessException businessException) {
-		 Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-		    Matcher matcher = pattern.matcher(email);
-		    return;
+	
+	private void verifierFormatTelephone(String telephone, BusinessException businessException) {
+		Pattern pattern = Pattern.compile("\\\\b(\\\\d{2})[- .]?(\\\\d{2})[- .]?(\\\\d{2})[- .]?(\\\\d{2})[- .]?(\\\\d{2})\\\\b$");
+		Matcher matcher = pattern.matcher(telephone);
+		return;
 		
 	}
 
