@@ -16,6 +16,9 @@ public class ConnexionManager {
 		this.connexionDAO = connexionDAO;
 	}
 
+	
+	BusinessException businessException = new BusinessException();
+	
 	// Méthode "authentification qui prend en paramètre pseudoOuEmail et le
 	// motDePasse
 	public Utilisateur authentification(String pseudoOuEmail, String motDePasse)throws BusinessException{
@@ -26,21 +29,16 @@ public class ConnexionManager {
 		 */
 		Utilisateur user = connexionDAO.selectPseudoEmailMDP(pseudoOuEmail, motDePasse);
 		
+		if(!businessException.hasErreurs()) { 
+			
+			user = connexionDAO.selectPseudoEmailMDP(pseudoOuEmail, motDePasse); 
+			
+			} else { user = null; 
+			
+			throw businessException; }
+		
 		// On retourn l'user.
 		return user;
-	}
-
-
-
-	// Méthode qui check si les champs pseudoEmail et mdp sont vides
-	public boolean vide (String identifiant, String motDePasse) throws BusinessException {
-		
-		
-		
-		return false;
-		
-		
-		
 	}
 	
 }

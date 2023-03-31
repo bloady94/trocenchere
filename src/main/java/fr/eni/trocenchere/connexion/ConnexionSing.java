@@ -2,11 +2,11 @@ package fr.eni.trocenchere.connexion;
 
 public class ConnexionSing {
 	
-	private static ConnexionDAO instance;
+	private static ConnexionManager instance;
 	
-	public static ConnexionDAO getConnexionDAO() {
+	public static ConnexionManager getInstance() {
 		if(instance==null) {
-			instance = new ConnexionDAOJdbcImpl();
+			instance = new ConnexionManager();
 		}
 		return instance;
 	}
