@@ -17,7 +17,6 @@ public class ServletDeconnexion extends HttpServlet {
        
 
     public ServletDeconnexion() {
-        super();
     }
 
 
@@ -25,9 +24,10 @@ public class ServletDeconnexion extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 	    if (session != null) {
+	    	session.removeAttribute("isConnected");
 	        session.invalidate();
 	    }
-	    response.sendRedirect("/trocenchere/src/main/webapp/jsp/index.jsp");
+	    response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
 		
 	}
 

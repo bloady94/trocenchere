@@ -1,8 +1,8 @@
 package fr.eni.trocenchere.inscription;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.javaee.module4.messages.LecteurMessage;
-import fr.eni.trocenchere.BusinessException;
+
+//import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
 
 /**
@@ -70,13 +70,13 @@ public class ServletTestInscription extends HttpServlet {
 			request.setAttribute("connexion", "ok");
 			
 		} catch (Exception e) {
-			List<String> msgErr = new ArrayList<>();
-			
-			for(int i : ((BusinessException) e).getListeCodesErreur()) {
-				msgErr.add(LecteurMessage.getMessageErreur(i));
-			}
-			request.setAttribute("listeCodesErreur", msgErr);
-			rd=request.getRequestDispatcher("/jsp/inscription.jsp");
+//			List<String> msgErr = new ArrayList<>();
+//			
+//			for(int i : ((BusinessException) e).getListeCodesErreur()) {
+//				msgErr.add(LecteurMessage.getMessageErreur(i));
+//			}
+//			request.setAttribute("listeCodesErreur", msgErr);
+//			rd=request.getRequestDispatcher("/jsp/inscription.jsp");
 			e.printStackTrace();	
 		}
 

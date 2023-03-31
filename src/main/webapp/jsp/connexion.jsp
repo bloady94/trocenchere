@@ -33,7 +33,7 @@
 		</form>
 	
 		
-		<a href="#"> <input type="submit" value="Créer un compte" /></a>
+		<a href="http://localhost:8080/trocenchere/jsp/inscription.jsp"> <input type="submit" value="Créer un compte" /></a>
 	</div>
 	
 	
