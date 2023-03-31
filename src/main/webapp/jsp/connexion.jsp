@@ -18,7 +18,7 @@
 				<input type="text" name="identifiant" /><br>
 			
 			 <label for="MotDePasse">Mot de passe :</label>
-			 	<input type="text" name="MotDePasse" /> <br>
+			 	<input type="password" name="MotDePasse" /> <br>
 			
 			</div>
 			
@@ -33,7 +33,7 @@
 		</form>
 	
 		
-		<a href="#"> <input type="submit" value="Créer un compte" /></a>
+		<a href="http://localhost:8080/trocenchere/jsp/inscription.jsp"> <input type="submit" value="Créer un compte" /></a>
 	</div>
 	
 	

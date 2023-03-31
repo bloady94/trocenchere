@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
+import fr.eni.trocenchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletConnexion
@@ -45,33 +46,35 @@ public class ServletConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 
-		// obtenir la session courante (si elle existe)
+	    response.setContentType("text/html;charset=UTF-8");
+	    PrintWriter out = response.getWriter();
 
-		String pseudo = request.getParameter("identifiant");
-		String mdp = request.getParameter("MotDePasse");
+	    // obtenir la session courante (si elle existe)
 
-		try {
-			if (ConnexionDAOJdbcImpl.VerificationPseudo(pseudo, mdp)) {
-				
-				HttpSession session = request.getSession(true);
+	    String pseudo = request.getParameter("identifiant");
+	    String mdp = request.getParameter("MotDePasse");
 
-				session.setAttribute("pseudo", pseudo);
-				
-				response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
-				
-			} else {
-				out.println("Pseudo ou Mot de passe incorrect");
-				RequestDispatcher rs = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
-				rs.include(request, response);
-			}
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    try {
+	    	ConnexionDAO dao = new ConnexionDAO();	        
 
+	        if (dao.verificationPseudo(pseudo, mdp)) {
+
+	            HttpSession session = request.getSession(true);
+
+	            session.setAttribute("pseudo", pseudo);
+
+	            response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
+
+	        } else {
+	            out.println("Pseudo ou Mot de passe incorrect");
+	            RequestDispatcher rs = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
+	            rs.include(request, response);
+	        }
+	    } catch (BusinessException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    }
 
 	}
 }

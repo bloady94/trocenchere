@@ -5,11 +5,10 @@ import fr.eni.trocenchere.bo.Utilisateur;
 
 public interface ConnexionDAO {
 	
-	public Utilisateur select_connexionPseudo(String pseudo, String motDePasse) throws BusinessException;
+	//public Utilisateur verificationPseudo(String pseudo, String motDePasse) throws BusinessException;
 	
-	public Utilisateur select_connexionEmail(String email, String motDePasse) throws BusinessException;
-
-	public static boolean VerificationPseudo(String pseudo, String motDePasse) throws BusinessException {
-		return false;
-	}
+	
+	//public Utilisateur verificationEmail(String email, String motDePasse) throws BusinessException;
+	
+	public Utilisateur selectPseudoEmailMDP(String pseudoOuEmail, String motDePasse) throws BusinessException;
 }
