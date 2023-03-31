@@ -18,25 +18,26 @@ public class ConnexionDAOJdbcImpl implements ConnexionDAO{
 	public Utilisateur selectPseudoEmailMDP(String pseudoOuEmail, String motDePasse) throws BusinessException {
 		
 		// creation d'un nouvel utilisateur
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		
 		try(Connection cnx = ConnectionProvider.getConnection())
         {
             PreparedStatement pstmt = cnx.prepareStatement(SELECT_ID_MDP);
             
             // Setting de ce que l'on va chercher
-           pstmt.setString(1, utilisateur.getPseudo());
-            pstmt.setString(2, utilisateur.getEmail());
-            pstmt.setString(3, utilisateur.getMotDePasse());
+           pstmt.setString(1, pseudoOuEmail);
+            pstmt.setString(2, pseudoOuEmail);
+            pstmt.setString(3, motDePasse);
             
             // Stock tout dans un tableau ResultSet
             ResultSet rs = pstmt.executeQuery();
 
             // Tant qu'il y a une ligne après tu add dans utilisateur :
             while (rs.next()) {
-            	utilisateur.setPseudo(rs.getString(pseudoOuEmail));
-            	utilisateur.setEmail(rs.getString(pseudoOuEmail));
-            	utilisateur.setMotDePasse(rs.getString(motDePasse));
+            	utilisateur = new Utilisateur();
+            	utilisateur.setPseudo(rs.getString("pseudo"));
+            	utilisateur.setEmail(rs.getString("email"));
+            	utilisateur.setMotDePasse(rs.getString("mot_de_passe"));
 			}
         }catch(Exception e)
         {
@@ -44,7 +45,7 @@ public class ConnexionDAOJdbcImpl implements ConnexionDAO{
 
         }
 		// Retourner utilisateur avec les données qu'on lui a demandé de chercher.
-		return  utilisateur;
+		return utilisateur;
 
 	}
 	

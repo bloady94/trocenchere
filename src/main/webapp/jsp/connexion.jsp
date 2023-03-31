@@ -10,6 +10,16 @@
 <body>
 <h1>ENI-Enchères</h1>
 
+		<c:if test="${!empty errorMessage}">
+			<div class="alert alert-danger" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	${errorMessage}
+			  </ul>
+			</div>
+		</c:if>
+		
+		
 	<div>
 		<form method="post" action="/trocenchere/ServletConnexion">
 	
@@ -23,7 +33,7 @@
 			</div>
 			
 			<div>
-			 	<input type="submit" value="Connexion" />
+			<a href="/ServletConnexion"><input type="submit" value="Connexion" /></a>
 			 <input type="checkbox" name="SeSouvenir" value="SeSouvenirDeMoi">
 	    		<label for="souvenirDeMoi">Se souvenir de moi</label>
 	    		<a href="#"> Mot de passe oublié </a>

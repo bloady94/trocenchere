@@ -11,11 +11,6 @@ public class ConnexionManager {
 		this.connexionDAO = new ConnexionDAOJdbcImpl();
 	}
 
-	// Ce constructeur permet à la classe ConnexionManager d'utiliser connexionDAO
-	public ConnexionManager(ConnexionDAO connexionDAO) {
-		this.connexionDAO = connexionDAO;
-	}
-
 	
 	BusinessException businessException = new BusinessException();
 	
@@ -27,15 +22,16 @@ public class ConnexionManager {
 		 *  Création d'un utilisateur dans lequel on va mettre la méthode selectPseudoEmailMDP, on renseigne dedans 
 		 *  le pseudoOuEmail et le motDePase
 		 */
-		Utilisateur user = connexionDAO.selectPseudoEmailMDP(pseudoOuEmail, motDePasse);
+		Utilisateur user = null;
 		
 		if(!businessException.hasErreurs()) { 
 			
 			user = connexionDAO.selectPseudoEmailMDP(pseudoOuEmail, motDePasse); 
 			
-			} else { user = null; 
-			
-			throw businessException; }
+			} else { 
+				
+			throw businessException; 
+			}
 		
 		// On retourn l'user.
 		return user;

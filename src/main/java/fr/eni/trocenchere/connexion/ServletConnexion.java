@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
@@ -27,7 +28,6 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletConnexion() {
-		super();
 		connexionSing = new ConnexionSing();
 	}
 
@@ -39,7 +39,7 @@ public class ServletConnexion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
+	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
 	    dispatcher.forward(request, response);
 
 	}
@@ -57,12 +57,13 @@ public class ServletConnexion extends HttpServlet {
 		
 		Utilisateur user = new Utilisateur();
 		
+		user.setEmail(identifiant); 
 		user.setPseudo(identifiant);
 		user.setMotDePasse(motDePasse);
-		 
+
 		
 		// Création de dao de type ConnexionManager, On insère dedans l'instance de la singleton.
-		ConnexionManager dao = ConnexionSing.getInstance();
+		ConnexionManager dao = connexionSing.getInstance();
 		
 		try {
 			user = dao.authentification(identifiant, motDePasse);
@@ -72,18 +73,17 @@ public class ServletConnexion extends HttpServlet {
 		}
 		
 		if (user !=null) {
-			response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
+			System.out.println("ok");
+			response.sendRedirect("/trocenchere/jsp/index.jsp");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("utilisateur", user);
 			
 		}else {
+			System.out.println("pas ok");
 			request.setAttribute("errorMessage", "Identifiant ou mot de passe incorrect.");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
 		    dispatcher.forward(request, response);
 			
 		}
-		
-	
-
-		
-
 	}
 }
