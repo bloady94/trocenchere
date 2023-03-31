@@ -4,54 +4,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Inscription</title>
 </head>
 <body>
 
 	<h1>ENI-Enchères</h1>
 	
 	<div>
-		<form method="get" action="./Mettre le nom de la servlet">
+		<form method="post" action="./ServletTestInscription">
 			<div>
 				<label for="pseudo">Pseudo :</label>
-					<input type="text" name="pseudo" /><br>
+					<input type="text" name="pseudo" value="<%=request.getParameter("pseudo")%>"/><br>
 							
 				<label for="prenom">Prénom :</label>
-					<input type="text" name="prenom" /><br>
+					<input type="text" name="prenom" value="<%=request.getParameter("prenom")%>"/><br>
 							
 				<label for="telephone">Téléphone :</label>
-					<input type="text" name="telephone" /><br>
+					<input type="tel" name="telephone" value="<%=request.getParameter("telephone")%>"/><br>
 							
 				<label for="codePostal">Code postal :</label>
-					<input type="text" name="codePostal" /><br>
+					<input type="text" name="codePostal" value="<%=request.getParameter("codePostal")%>"/><br>
 							
 				<label for="motDePasse">Mot de passe :</label>
-					<input type="text" name="motDePasse" /><br>
+					<input type="password" name="motDePasse" value="<%=request.getParameter("motDePasse")%>"/><br>
 			</div>
 			
 			
 			<div>
 				<label for="nom">Nom :</label>
-					<input type="text" name="nom" /><br>
+					<input type="text" name="nom" value="<%=request.getParameter("nom")%>"/><br>
 							
 				<label for="email">Email :</label>
-					<input type="text" name="email" /><br>
+					<input type="text" name="email" value="<%=request.getParameter("email")%>"/><br>
 							
 				<label for="rue">Rue :</label>
-					<input type="text" name="rue" /><br>
+					<input type="text" name="rue" value="<%=request.getParameter("rue")%>"/><br>
 							
 				<label for="ville">Ville :</label>
-					<input type="text" name="ville" /><br>
+					<input type="text" name="ville" value="<%=request.getParameter("ville")%>"/><br>
 							
 				<label for="conformationMDP">Confirmation :</label>
-					<input type="text" name="conformationMDP" /><br>
+					<input type="password" name="confirmationMDP" value="<%=request.getParameter("confirmationMDP")%>"/><br>
 			</div>
 			
-			<input type="submit" value="Créer" />
+		<a href="/trocenchere/ServletTestInscription"> <input type="submit" value="Créer un compte" /></a>
+			  </form>
 			
-		</form>
-		
-		<a href="#"> <input type="submit" value="Créer un compte" /></a>
 			
 	</div>
 	
