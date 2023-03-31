@@ -59,7 +59,7 @@ public class ServletConnexion extends HttpServlet {
 		
 		user.setPseudo(identifiant);
 		user.setMotDePasse(motDePasse);
-		
+		 
 		
 		// Création de dao de type ConnexionManager, On insère dedans l'instance de la singleton.
 		ConnexionManager dao = ConnexionSing.getInstance();
