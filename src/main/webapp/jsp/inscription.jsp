@@ -48,7 +48,8 @@
 			</div>
 			
 		<a href="/trocenchere/inscription/ServletTestInscription"> <input type="submit" value="Créer un compte" /></a>
-			  </form>			
+			  </form>
+		<a href="http://localhost:8080/trocenchere/"><input type="submit" value="Annuler"></a>			
 	</div>
 </body>
 </html>
