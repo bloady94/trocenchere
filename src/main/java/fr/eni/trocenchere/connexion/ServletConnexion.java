@@ -73,13 +73,11 @@ public class ServletConnexion extends HttpServlet {
 		}
 		
 		if (user !=null) {
-			System.out.println("ok");
 			response.sendRedirect("/trocenchere/jsp/index.jsp");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("utilisateur", user);
 			
 		}else {
-			System.out.println("pas ok");
 			request.setAttribute("errorMessage", "Identifiant ou mot de passe incorrect.");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
 		    dispatcher.forward(request, response);
