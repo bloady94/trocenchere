@@ -36,8 +36,8 @@ public class ServletTestInscription extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		RequestDispatcher rd=null;
-		if(request.getSession().getAttribute("utilisateur_connecte")!=null) {
-			rd=request.getRequestDispatcher("ServletAccueilEncheresConnecte");
+		if(request.getSession().getAttribute("isConnected")!=null) {
+			rd=request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/index.jsp");
 		}else {
 			rd = request.getRequestDispatcher("/jsp/inscription.jsp");
 		}
@@ -62,11 +62,11 @@ public class ServletTestInscription extends HttpServlet {
 		String motDePasse= request.getParameter("motDePasse");
 		String motDePasseConfirmation=request.getParameter("confirmationMDP");
 		
-		RequestDispatcher rd = null;
+
 		try {
 			InscriptionManager IManager =  InscriptionManager.getInstance();
 			Utilisateur utilisateurConnecte = IManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,motDePasseConfirmation);
-			request.getSession().setAttribute("utilisateur_connecte", utilisateurConnecte);
+			request.getSession().setAttribute("isConnected", utilisateurConnecte);
 			request.setAttribute("connexion", "ok");
 			
 		} catch (Exception e) {
@@ -80,6 +80,7 @@ public class ServletTestInscription extends HttpServlet {
 			e.printStackTrace();	
 		}
 
+		RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/index.jsp");
 		rd.forward(request, response);
 	}
 }

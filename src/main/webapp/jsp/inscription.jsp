@@ -43,17 +43,12 @@
 				<label for="ville">Ville :</label>
 					<input type="text" name="ville" value="<%=request.getParameter("ville")%>"/><br>
 							
-				<label for="conformationMDP">Confirmation :</label>
+				<label for="confirmationMDP">Confirmation :</label>
 					<input type="password" name="confirmationMDP" value="<%=request.getParameter("confirmationMDP")%>"/><br>
 			</div>
 			
-		<a href="/trocenchere/ServletTestInscription"> <input type="submit" value="Créer un compte" /></a>
-			  </form>
-			
-			
+		<a href="/trocenchere/inscription/ServletTestInscription"> <input type="submit" value="Créer un compte" /></a>
+			  </form>			
 	</div>
-	
-	
-
 </body>
 </html>

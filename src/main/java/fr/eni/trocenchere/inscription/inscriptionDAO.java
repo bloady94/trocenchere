@@ -5,9 +5,7 @@ import fr.eni.trocenchere.bo.Utilisateur;
 
 public interface inscriptionDAO {
 
-	public static void insert(Utilisateur utilisateur) throws BusinessException {
-		
-		
+	public void insertUtilisateur(Utilisateur utilisateur) throws BusinessException {	
 	}
 
 }

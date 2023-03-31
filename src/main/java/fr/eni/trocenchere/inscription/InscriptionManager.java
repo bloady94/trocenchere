@@ -8,11 +8,16 @@ import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
 
 public class InscriptionManager {
+	private inscriptionDAO inscriptionDao;
+	
+	public InscriptionManager() {
+		this.inscriptionDao = DAOFactory.getInscriptionDAO();
+	}
 
 	public Utilisateur ajouterUtilisateur1(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) throws BusinessException {
 		BusinessException businessException = new BusinessException();
-		
+		Utilisateur utilisateur = null;
 		// verifier la nullité des saisies
 		this.verifierNullite(pseudo, businessException);
 		this.verifierNullite(nom, businessException);
@@ -54,11 +59,19 @@ public class InscriptionManager {
 			throw businessException;
 		}
 
-		Utilisateur utilisateur =new Utilisateur();
-		inscriptionDAO.insert(utilisateur);
+
+		utilisateur.setPseudo(pseudo);
+		utilisateur.setPrenom(prenom);
+		utilisateur.setNom(nom);
+		utilisateur.setMotDePasse(motDePasse);
+		utilisateur.setEmail(email);
+		utilisateur.setTelephone(telephone);
+		utilisateur.setRue(rue);
+		utilisateur.setVille(ville);
+		utilisateur.setCodePostal(codePostal);
 		utilisateur.setCredit(100);
 		utilisateur.setAdministrateur(false);
-	
+		inscriptionDao.insertUtilisateur(utilisateur);
 		return utilisateur;
 	}
 
@@ -80,10 +93,10 @@ public class InscriptionManager {
 		
 	}
 
-	private void verifierConformiteMotDePasse(String motDePasse, BusinessException businessException) {
+	//private void verifierConformiteMotDePasse(String motDePasse, BusinessException businessException) {
 		// TODO Auto-generated method stub
 		
-	}
+	//}
 
 	private boolean verifierNullite(String pseudo, BusinessException businessException) {
 		 return pseudo == null || pseudo.isEmpty();
