@@ -21,12 +21,17 @@ import fr.eni.trocenchere.bo.Utilisateur;
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private ConnexionManager connexionManager;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletConnexion() {
+
 		super();
-		// TODO Auto-generated constructor stub
+		// On initialise la connexion à la base de données dans le constructeur de la
+		// servlet
+		connexionManager = new ConnexionManager();
 	}
 
 	/**
@@ -35,8 +40,8 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -46,35 +51,75 @@ public class ServletConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		// On récupère les données entrées par l'utilisateur dans la page JSP
+		String identifiant = request.getParameter("identifiant");
+		String motDePasse = request.getParameter("MotDePasse");
 
-	    response.setContentType("text/html;charset=UTF-8");
-	    PrintWriter out = response.getWriter();
+		// On appelle la méthode d'authentification de la classe ConnexionManager
+		Utilisateur user;
 
-	    // obtenir la session courante (si elle existe)
+		// On vérifie que les champs identifiant et mot de passe ne sont pas vides
+		if (identifiant != null && motDePasse != null) {
 
-	    String pseudo = request.getParameter("identifiant");
-	    String mdp = request.getParameter("MotDePasse");
+			try {
+				user = connexionManager.authentification(identifiant, motDePasse);
 
-	    try {
-	    	ConnexionDAO dao = new ConnexionDAO();	        
+				// Si l'utilisateur existe dans la base de données
+				if (user != null) {
+					HttpSession session = request.getSession(true);
 
-	        if (dao.verificationPseudo(pseudo, mdp)) {
+					// On stocke l'utilisateur en session pour qu'il soit accessible sur les autres
+					// pages
+					request.getSession().setAttribute("utilisateur", user);
+					// On redirige l'utilisateur vers la page d'accueil par exemple
+					response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
+				} else {
+					// Si l'utilisateur n'existe pas dans la base de données, on le redirige vers la
+					// page de connexion avec un message d'erreur
+					request.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
+					request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp").forward(request,
+							response);
+				}
 
-	            HttpSession session = request.getSession(true);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-	            session.setAttribute("pseudo", pseudo);
+		} else {
+			// Si les champs identifiant et mot de passe sont vides, on renvoie un message
+			// d'erreur sur la page de connexion
+			request.setAttribute("erreur", "Veuillez remplir tous les champs");
+			request.getRequestDispatcher("connexion.jsp").forward(request, response);
+		}
 
-	            response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
-
-	        } else {
-	            out.println("Pseudo ou Mot de passe incorrect");
-	            RequestDispatcher rs = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
-	            rs.include(request, response);
-	        }
-	    } catch (BusinessException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
+//	    response.setContentType("text/html;charset=UTF-8");
+//	    PrintWriter out = response.getWriter();
+//
+//	    String pseudo = request.getParameter("identifiant");
+//	    String mdp = request.getParameter("MotDePasse");
+//
+//	    try {
+//	    	
+//	       if (pseudo.equals(ConnexionDAO.))
+//
+//	        if (ConnexionManager.authentification(pseudo, mdp)) {
+//
+//	            HttpSession session = request.getSession(true);
+//
+//	            session.setAttribute("pseudo", pseudo);
+//
+//	            response.sendRedirect("http://localhost:8080/trocenchere/jsp/index.jsp");
+//
+//	        } else {
+//	            out.println("Pseudo ou Mot de passe incorrect");
+//	            RequestDispatcher rs = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/connexion.jsp");
+//	            rs.include(request, response);
+//	        }
+//	    } catch (BusinessException e) {
+//	        // TODO Auto-generated catch block
+//	        e.printStackTrace();
+//	    }
 
 	}
 }
