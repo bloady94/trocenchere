@@ -24,10 +24,11 @@ public class ServletDeconnexion extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 	    if (session != null) {
-	    	session.removeAttribute("isConnected");
-	        session.invalidate();
+	    	session.setAttribute("utilisateur", null);
+	    	
 	    }
-	    response.sendRedirect("/WEB-INF/index.jsp");
+	    
+	    response.sendRedirect("http://localhost:8080/trocenchere/");
 		
 	}
 

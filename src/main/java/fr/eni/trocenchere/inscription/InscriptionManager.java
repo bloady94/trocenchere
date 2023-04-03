@@ -18,7 +18,7 @@ public class InscriptionManager {
 
 		BusinessException businessException = new BusinessException();
 		
-		Utilisateur utilisateurTemp = null;
+		Utilisateur utilisateurTemp = null; 
 
 		/*
 		 * On va v�rifier si les les champs non null sont bien renseign�s. Il y a deux
@@ -47,11 +47,11 @@ public class InscriptionManager {
 		utilisateurTemp.setNom(nom);
 		utilisateurTemp.setPrenom(prenom);
 		utilisateurTemp.setEmail(email);
-		utilisateurTemp.setTelephone(pseudo);
-		utilisateurTemp.setRue(pseudo);
-		utilisateurTemp.setCodePostal(pseudo);
-		utilisateurTemp.setVille(pseudo);
-		utilisateurTemp.setMotDePasse(pseudo);
+		utilisateurTemp.setTelephone(telephone);
+		utilisateurTemp.setRue(rue);
+		utilisateurTemp.setCodePostal(codePostal);
+		utilisateurTemp.setVille(ville);
+		utilisateurTemp.setMotDePasse(motDePasse);
 		utilisateurTemp.setCredit(credit);
 		utilisateurTemp.setAdministrateur(administrateur);
 		

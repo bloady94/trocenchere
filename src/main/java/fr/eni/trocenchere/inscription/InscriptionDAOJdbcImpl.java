@@ -16,7 +16,7 @@ public class InscriptionDAOJdbcImpl implements InscriptionDAO {
 			+"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
 	@Override
-	public void insertUtilisateur(Utilisateur utilisateur) throws BusinessException {
+	public void insertUtilisateur(Utilisateur utilisateur) throws BusinessException { 
 		if (utilisateur == null) {
 			BusinessException businessException = new BusinessException();
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
@@ -56,5 +56,4 @@ public class InscriptionDAOJdbcImpl implements InscriptionDAO {
 		}
 		
 	}
-
 }

@@ -2,40 +2,65 @@ package fr.eni.trocenchere.modifierProfil;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.inscription.DAOFactory;
+import fr.eni.trocenchere.inscription.InscriptionDAO;
 
-public class ModifierProfilManager {
+public class ModifierProfilManager implements ModifierProfil{
 
-	private ModifierProfilDAO modifierProfilAO;
+	private ModifierProfil modifierProfil;
 
-	public ModifierProfilManager() {
-		this.modifierProfilAO = new ModifierProfilDAOJdbcImpl();
-	}
+//	public ModifierProfilManager() {
+//		this.modifierProfil = DAOFactory.getModifierProfilDAO();
+//	}
 	
+	@Override
 	public Utilisateur UpdateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse)
-			throws BusinessException {
-
-		BusinessException businessException = new BusinessException();
+			String rue, String codePostal, String ville, String motDePasse) throws BusinessException {
 		
-		Utilisateur utilisateurTemp = null;
+		// il faut creer un utilisateur
+		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,codePostal, ville, motDePasse);
 		
-		// Permet de vérifier tous les champs qui sont null
-		this.verifNull(pseudo);
-		this.verifNull(nom, "nom");
-		this.verifNull(prenom, "prenom");
-		this.verifNull(email, "email");
-		this.verifNull(rue, "rue");
-		this.verifNull(codePostal, "codePostal");
-		this.verifNull(ville, "ville");
-		this.verifNull(motDePasse, "motDePasse");
-
-		return utilisateurTemp;	
+		if (!pseudo.isEmpty()) {
+			user.setPseudo(pseudo);
+		}
+		
+		if (!nom.isEmpty()) {
+			user.setPseudo(nom);
+		}
+		
+		if (!prenom.isEmpty()) {
+			user.setPseudo(prenom);
+		}
+		
+		if (!email.isEmpty()) {
+			user.setPseudo(email);
+		}
+		
+		if (!telephone.isEmpty()) {
+			user.setPseudo(telephone);
+		}
+		
+		if (!rue.isEmpty()) {
+			user.setPseudo(rue);
+		}
+		
+		if (!codePostal.isEmpty()) {
+			user.setPseudo(codePostal);
+		}
+		
+		if (!codePostal.isEmpty()) {
+			user.setPseudo(codePostal);
+		}
+		
+		if (!ville.isEmpty()) {
+			user.setPseudo(ville);
+		}
+		
+		if (!motDePasse.isEmpty()) {
+			user.setPseudo(motDePasse);
+		}
+		
+		return user;
 	}
-	
 
-	private void verifNull(String pseudo) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

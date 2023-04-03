@@ -30,7 +30,7 @@ public class ServletTestInscription extends HttpServlet {
      */
     public ServletTestInscription() {
     	inscriptionSing = new InscriptionSing();
-
+ 
     }
 
 	/**
@@ -44,9 +44,6 @@ public class ServletTestInscription extends HttpServlet {
 	}	
 	
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// R�cup�ration des param�tres 
@@ -70,7 +67,7 @@ public class ServletTestInscription extends HttpServlet {
 		InscriptionManager dao = inscriptionSing.getInstance();
 		
 		try {
-			user = dao.ajouterUtilisateur1(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
+			user = dao.ajouterUtilisateur1(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 100, false);
 			
 			
 		} catch (Exception e) {
@@ -92,4 +89,5 @@ public class ServletTestInscription extends HttpServlet {
 		}
 
 	}
+
 }
