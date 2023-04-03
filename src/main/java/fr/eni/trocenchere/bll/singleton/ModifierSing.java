@@ -1,4 +1,6 @@
-package fr.eni.trocenchere.bll;
+package fr.eni.trocenchere.bll.singleton;
+
+import fr.eni.trocenchere.bll.ModifierProfilManager;
 
 public class ModifierSing {
 	

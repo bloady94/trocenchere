@@ -4,6 +4,7 @@ package fr.eni.trocenchere.bll;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.dal.DAOFactory;
 import fr.eni.trocenchere.dal.InscriptionDAO;
 
 public class InscriptionManager {
