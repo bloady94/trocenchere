@@ -10,7 +10,7 @@
 	<h1>ENI-Enchères</h1>
 	
 	<div>
-		<form method="get" action="./Mettre le nom de la servlet">
+		<form method="post" action="./Mettre le nom de la servlet">
 			<div>
 				<label for="pseudo">Pseudo :</label>
 					<input type="text" name="pseudo" /><br>
@@ -24,8 +24,11 @@
 				<label for="codePostal">Code postal :</label>
 					<input type="text" name="codePostal" /><br>
 							
-				<label for="motDePasse">Mot de passe :</label>
-					<input type="text" name="motDePasse" /><br>
+				<label for="motDePasseActuel">Mot de passe actuel :</label>
+					<input type="password" name="motDePasseActuel" /><br>
+				
+				<label for="nouveauMDP">Nouveau mot de passe :</label>
+					<input type="password" name="nouveauMDP" /><br>
 			</div>
 			
 			
@@ -42,10 +45,16 @@
 				<label for="ville">Ville :</label>
 					<input type="text" name="ville" /><br>
 							
-				<label for="conformationMDP">Confirmation :</label>
-					<input type="text" name="conformationMDP" /><br>
+				<label for="confirmationMDP">Confirmation :</label>
+					<input type="password" name="confirmationMDP" /><br>
 			</div>
 			
+			
+				<%
+		Integer nbCredit = (Integer) request.getAttribute("credit");
+	%>
+	
+	Crédit :<%=nbCredit %>
 			<!-- Ajouter Crédit avec le nom de crédit -->
 			
 			<input type="submit" value="Enregistrer" />
