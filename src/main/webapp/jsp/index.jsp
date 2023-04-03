@@ -1,5 +1,8 @@
 <%@page import="javax.servlet.http.HttpSession"%>
 <%@page import="fr.eni.trocenchere.bo.Utilisateur"%>
+<%@page import="fr.eni.trocenchere.bo.ArticleVendu"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,17 +18,18 @@
 		<%
 		Boolean connected = false;
 		if (session.getAttribute("utilisateur") != null)
-			connected = ((Utilisateur)session.getAttribute("utilisateur")) != null;
-		
+			connected = ((Utilisateur) session.getAttribute("utilisateur")) != null;
+
 		if (connected == false) {
 		%>
 
-		<a href="http://localhost:8080/trocenchere/jsp/connexion.jsp">S'inscrire - Se connecter</a>
+		<a href="http://localhost:8080/trocenchere/jsp/connexion.jsp">S'inscrire
+			- Se connecter</a>
 		<%
 		} else {
 		%>
-		<a href="#">Encheres</a> <a href="#">Vendre un article</a> 
-		<a href="${pageContext.request.contextPath}/ServletProfil">MonProfil</a>
+		<a href="#">Encheres</a> <a href="#">Vendre un article</a> <a
+			href="${pageContext.request.contextPath}/ServletProfil">MonProfil</a>
 		<a href="${pageContext.request.contextPath}/ServletDeconnexion">Deconnexion</a>
 		<%
 		}
@@ -43,6 +47,24 @@
 				<option>Sport et Loisirs</option>
 			</select> <input type="submit" value="Rechercher">
 		</form>
+	</div>
+
+	<div class="listeArticles">
+		<%
+		List<ArticleVendu> listeArticles = new ArrayList<>();
+		listeArticles = (List<ArticleVendu>) request.getAttribute("article");
+		if (listeArticles != null && listeArticles.size() > 0) {
+			for (ArticleVendu articleVendu : listeArticles) {
+		%>
+		<p><%=articleVendu.getNomArticle()%></p>
+		<%
+		}
+		} else {
+		%>
+		<p>Il n'y a pas d'articles à afficher</p>
+		<%
+		}
+		%>
 	</div>
 
 </body>
