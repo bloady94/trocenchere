@@ -2,71 +2,65 @@ package fr.eni.trocenchere.modifierProfil;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.inscription.DAOFactory;
+import fr.eni.trocenchere.inscription.InscriptionDAO;
 
-public class ModifierProfilManager {
+public class ModifierProfilManager implements ModifierProfil{
 
-	private ModifierProfilDAO modifierProfilAO;
+	private ModifierProfil modifierProfil;
 
-	public ModifierProfilManager() {
-		this.modifierProfilAO = new ModifierProfilDAOJdbcImpl();
-	}
+//	public ModifierProfilManager() {
+//		this.modifierProfil = DAOFactory.getModifierProfilDAO();
+//	}
 	
+	@Override
 	public Utilisateur UpdateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse)
-			throws BusinessException {
-
-		/* 
-		 * Donc la l'idée est de créer une variable utilisateurTemp de type utilisateur, on l'initialise à null
-		 * car on lui donnera des valeurs pendant les verifs.
-		 */
-		Utilisateur utilisateurTemp = null;
-
+			String rue, String codePostal, String ville, String motDePasse) throws BusinessException {
 		
-		/* 
-		 * Conditon if ou on demande si le champs pseudo n'est pas vide.
-		 * S'il y a quelque chose dedans, on prend la valeur et boum on setPseudo avec.
-		 * En revanche, S'il y r dedans on get le pseudo de base et boum.
-		 */
-		if(!pseudo.isEmpty()) {
-			utilisateurTemp.setPseudo(pseudo);
-		}
-	
+		// il faut creer un utilisateur
+		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue,codePostal, ville, motDePasse);
 		
-		if(!nom.isEmpty()) {
-			utilisateurTemp.setPseudo(nom);
+		if (!pseudo.isEmpty()) {
+			user.setPseudo(pseudo);
 		}
 		
-		if(!prenom.isEmpty()) {
-			utilisateurTemp.setPseudo(prenom);
+		if (!nom.isEmpty()) {
+			user.setPseudo(nom);
 		}
 		
-		if(!email.isEmpty()) {
-			utilisateurTemp.setPseudo(email);
+		if (!prenom.isEmpty()) {
+			user.setPseudo(prenom);
 		}
 		
-		if(!telephone.isEmpty()) {
-			utilisateurTemp.setPseudo(telephone);
+		if (!email.isEmpty()) {
+			user.setPseudo(email);
 		}
 		
-		if(!rue.isEmpty()) {
-			utilisateurTemp.setPseudo(rue);
+		if (!telephone.isEmpty()) {
+			user.setPseudo(telephone);
 		}
 		
-		if(!codePostal.isEmpty()) {
-			utilisateurTemp.setPseudo(codePostal);
+		if (!rue.isEmpty()) {
+			user.setPseudo(rue);
 		}
 		
-		if(!ville.isEmpty()) {
-			utilisateurTemp.setPseudo(ville);
+		if (!codePostal.isEmpty()) {
+			user.setPseudo(codePostal);
 		}
 		
-		if(!motDePasse.isEmpty()) {
-			utilisateurTemp.setPseudo(motDePasse);
+		if (!codePostal.isEmpty()) {
+			user.setPseudo(codePostal);
 		}
-
-
 		
-		return utilisateurTemp;	
+		if (!ville.isEmpty()) {
+			user.setPseudo(ville);
+		}
+		
+		if (!motDePasse.isEmpty()) {
+			user.setPseudo(motDePasse);
+		}
+		
+		return user;
 	}
-	
+
 }
