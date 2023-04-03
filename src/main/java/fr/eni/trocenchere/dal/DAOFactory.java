@@ -7,6 +7,8 @@ import fr.eni.trocenchere.dal.jdbc.ModifierProfilDAOJdbcImpl;
 import fr.eni.trocenchere.dal.jdbc.ProfilDAOJdbcImpl;
 
 public class DAOFactory {
+	
+	
 	public static ModifierProfilDAO getModifierProfilDAO() {
 		return new ModifierProfilDAOJdbcImpl();
 	}

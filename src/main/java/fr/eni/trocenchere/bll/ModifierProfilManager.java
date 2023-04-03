@@ -2,22 +2,26 @@ package fr.eni.trocenchere.bll;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.dal.ConnexionDAO;
+import fr.eni.trocenchere.dal.DAOFactory;
 import fr.eni.trocenchere.dal.InscriptionDAO;
+import fr.eni.trocenchere.dal.ModifierProfilDAO;
 
 public class ModifierProfilManager implements ModifierProfil {
-
-	private ModifierProfil modifierProfil;
+	
+	private ModifierProfilDAO modifierProfilDAO;
 
 	public ModifierProfilManager() {
-		this.modifierProfil = DAOFactory.getModifierProfilDAO();
+		this.modifierProfilDAO = DAOFactory.getModifierProfilDAO();
 	}
+
 
 	@Override
 	public Utilisateur UpdateUtilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse) throws BusinessException {
 
 		// il faut creer un utilisateur
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+		Utilisateur user = null;
 
 		if (!pseudo.isEmpty()) {
 			user.setPseudo(pseudo);

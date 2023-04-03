@@ -62,7 +62,7 @@ public class ServletTestInscription extends HttpServlet {
 		
 	
 		
-		// Crï¿½ation d'un nouvel utilisateur
+		// Création d'un nouvel utilisateur
 		Utilisateur user = new Utilisateur();
 		
 		// Crï¿½ation de dao de type ConnexionManager, On insï¿½re dedans l'instance de la singleton.
