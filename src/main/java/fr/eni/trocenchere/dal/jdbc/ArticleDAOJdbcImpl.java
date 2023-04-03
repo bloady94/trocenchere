@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.dal.ArticleDAO;

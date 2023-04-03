@@ -19,7 +19,6 @@
 		Boolean connected = false;
 		if (session.getAttribute("utilisateur") != null)
 			connected = ((Utilisateur) session.getAttribute("utilisateur")) != null;
-
 		if (connected == false) {
 		%>
 

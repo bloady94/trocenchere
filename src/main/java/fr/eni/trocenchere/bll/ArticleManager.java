@@ -46,6 +46,7 @@ public class ArticleManager {
 				return ajoutarticle ;
 		    }
 		
+	
 	public List<ArticleVendu> selectionnerTousLesArticles() throws BusinessException{
 		return this.articleDAO.selectArticles();
 	}
