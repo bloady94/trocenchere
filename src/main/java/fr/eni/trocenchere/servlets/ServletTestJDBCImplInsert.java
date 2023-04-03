@@ -15,7 +15,7 @@ import fr.eni.trocenchere.bo.Categorie;
 import fr.eni.trocenchere.bo.Enchere;
 import fr.eni.trocenchere.bo.Retrait;
 import fr.eni.trocenchere.bo.Utilisateur;
-import fr.eni.trocenchere.dal.EncheresDAOJdbcImpl;
+import fr.eni.trocenchere.dal.jdbc.EncheresDAOJdbcImpl;
 
 /**
  * Servlet implementation class ServletTestJDBCImplInsert
