@@ -62,6 +62,12 @@ public class ServletModifierProfil extends HttpServlet {
 		String newMotDePasseConfirmation=request.getParameter("confirmationMDP");
 		
 		
+		if (!pseudo.isEmpty()) {
+			
+		}
+		
+		
+		
 		
 		// ##########################################
 		
