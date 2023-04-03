@@ -18,7 +18,7 @@ public class InscriptionManager {
 
 		BusinessException businessException = new BusinessException();
 		
-		Utilisateur utilisateurTemp = null;
+		Utilisateur utilisateurTemp = null; 
 
 		/*
 		 * On va v�rifier si les les champs non null sont bien renseign�s. Il y a deux

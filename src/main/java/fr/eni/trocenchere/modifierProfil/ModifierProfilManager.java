@@ -15,27 +15,58 @@ public class ModifierProfilManager {
 			String rue, String codePostal, String ville, String motDePasse)
 			throws BusinessException {
 
-		BusinessException businessException = new BusinessException();
-		
+		/* 
+		 * Donc la l'idée est de créer une variable utilisateurTemp de type utilisateur, on l'initialise à null
+		 * car on lui donnera des valeurs pendant les verifs.
+		 */
 		Utilisateur utilisateurTemp = null;
-		
-		// Permet de vérifier tous les champs qui sont null
-		this.verifNull(pseudo);
-		this.verifNull(nom, "nom");
-		this.verifNull(prenom, "prenom");
-		this.verifNull(email, "email");
-		this.verifNull(rue, "rue");
-		this.verifNull(codePostal, "codePostal");
-		this.verifNull(ville, "ville");
-		this.verifNull(motDePasse, "motDePasse");
 
-		return utilisateurTemp;	
-	}
+		
+		/* 
+		 * Conditon if ou on demande si le champs pseudo n'est pas vide.
+		 * S'il y a quelque chose dedans, on prend la valeur et boum on setPseudo avec.
+		 * En revanche, S'il y r dedans on get le pseudo de base et boum.
+		 */
+		if(!pseudo.isEmpty()) {
+			utilisateurTemp.setPseudo(pseudo);
+		}
 	
-
-	private void verifNull(String pseudo) {
-		// TODO Auto-generated method stub
 		
+		if(!nom.isEmpty()) {
+			utilisateurTemp.setPseudo(nom);
+		}
+		
+		if(!prenom.isEmpty()) {
+			utilisateurTemp.setPseudo(prenom);
+		}
+		
+		if(!email.isEmpty()) {
+			utilisateurTemp.setPseudo(email);
+		}
+		
+		if(!telephone.isEmpty()) {
+			utilisateurTemp.setPseudo(telephone);
+		}
+		
+		if(!rue.isEmpty()) {
+			utilisateurTemp.setPseudo(rue);
+		}
+		
+		if(!codePostal.isEmpty()) {
+			utilisateurTemp.setPseudo(codePostal);
+		}
+		
+		if(!ville.isEmpty()) {
+			utilisateurTemp.setPseudo(ville);
+		}
+		
+		if(!motDePasse.isEmpty()) {
+			utilisateurTemp.setPseudo(motDePasse);
+		}
+
+
+		
+		return utilisateurTemp;	
 	}
 	
 }

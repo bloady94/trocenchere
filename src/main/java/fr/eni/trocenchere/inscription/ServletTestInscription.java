@@ -30,7 +30,7 @@ public class ServletTestInscription extends HttpServlet {
      */
     public ServletTestInscription() {
     	inscriptionSing = new InscriptionSing();
-
+ 
     }
 
 	/**
