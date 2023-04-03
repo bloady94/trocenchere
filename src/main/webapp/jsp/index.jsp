@@ -52,7 +52,7 @@
 	<div class="listeArticles">
 		<%
 		List<ArticleVendu> listeArticles = new ArrayList<>();
-		listeArticles = (List<ArticleVendu>) request.getAttribute("article");
+		listeArticles = (List<ArticleVendu>) request.getAttribute("listeArticles");
 		if (listeArticles != null && listeArticles.size() > 0) {
 			for (ArticleVendu articleVendu : listeArticles) {
 		%>

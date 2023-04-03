@@ -1,23 +1,24 @@
 package fr.eni.trocenchere.bll;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Categorie;
 import fr.eni.trocenchere.bo.Utilisateur;
-import fr.eni.trocenchere.dal.AjoutArticleDAO;
+import fr.eni.trocenchere.dal.ArticleDAO;
 
 
 public class ArticleManager {
 	
-	private AjoutArticleDAO ajoutasrticleDAO;
+	private ArticleDAO articleDAO;
 	
 	
 	
 
 
-	private ArticleVendu ajoutArticle (  String nomArticle, String description, LocalDate debutEnchere, LocalDate finEnchere,
+	private ArticleVendu ajoutArticle(  String nomArticle, String description, LocalDate debutEnchere, LocalDate finEnchere,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie) throws BusinessException {
 		
 		        BusinessException businessException = new BusinessException();
@@ -35,7 +36,7 @@ public class ArticleManager {
 		       
 		        if(!businessException.hasErreurs ()) 
 				{
-		        	this.ajoutasrticleDAO.ajoutarticle(ajoutarticle);
+		        	this.articleDAO.ajoutarticle(ajoutarticle);
 					
 				}else 
 				{
@@ -45,6 +46,8 @@ public class ArticleManager {
 				return ajoutarticle ;
 		    }
 		
-	
+	public List<ArticleVendu> selectionnerTousLesArticles() throws BusinessException{
+		return this.articleDAO.selectArticles();
+	}
 
 }
