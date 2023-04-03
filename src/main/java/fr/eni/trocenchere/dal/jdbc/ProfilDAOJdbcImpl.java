@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
 import fr.eni.trocenchere.dal.CodesResultatDAL;
-import fr.eni.trocenchere.dal.ConnectionProvider;
 import fr.eni.trocenchere.dal.ProfilDAO;
 
 public class ProfilDAOJdbcImpl implements ProfilDAO {

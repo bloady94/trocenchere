@@ -1,4 +1,4 @@
-package fr.eni.trocenchere.dal;
+package fr.eni.trocenchere.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import fr.eni.trocenchere.dal.ConnectionProvider;
+import fr.eni.trocenchere.dal.jdbc.ConnectionProvider;
 
 abstract class ConnectionProvider {
 	private static DataSource dataSource;

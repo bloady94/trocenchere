@@ -11,7 +11,6 @@ import fr.eni.trocenchere.bo.Enchere;
 import fr.eni.trocenchere.bo.Retrait;
 import fr.eni.trocenchere.bo.Utilisateur;
 import fr.eni.trocenchere.dal.CodesResultatDAL;
-import fr.eni.trocenchere.dal.ConnectionProvider;
 import fr.eni.trocenchere.dal.EncheresDAO;
 
 public class EncheresDAOJdbcImpl implements EncheresDAO {
