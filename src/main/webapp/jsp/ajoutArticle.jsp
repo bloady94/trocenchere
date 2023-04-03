@@ -11,6 +11,9 @@
 <form action="<%=request.getContextPath()%>/ServletAjoutArticle" method="post">
 
 <action="ajout-article" method="post">
+ <label for="nouvelle vente">Nouvelle Vente</label><br>
+ <br>
+
     <label for="article">Article :</label>
     <input type="text" name="article" id="article"><br>
 
@@ -39,6 +42,8 @@
 	    
 	    <label for="article">Fin de l'Enchere :</label>
 	    <input type="date" name="fin de l'enchere" id="fin de l'enchere"><br>
+	    
+	     <label for="retrait">RETRAIT</label><br>
   
     <label for="rue">Rue :</label>
     <input type="text" name="rue" id="rue"><br>
@@ -52,6 +57,9 @@
 
     <input type="submit" value="Enregistrer">
     <input type="submit" value="Annuler">
+   
+   
+   
    
     
     
