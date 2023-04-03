@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bll.ConnexionManager;
-import fr.eni.trocenchere.bll.ConnexionSing;
+import fr.eni.trocenchere.bll.singleton.ConnexionSing;
 import fr.eni.trocenchere.bo.Utilisateur;
 
 /**
