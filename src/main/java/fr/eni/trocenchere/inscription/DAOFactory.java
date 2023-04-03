@@ -6,5 +6,5 @@ public class DAOFactory {
 		return new InscriptionDAOJdbcImpl(); 
 	}
 	
-	// modif
+
 }

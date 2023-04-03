@@ -11,5 +11,5 @@ public class InscriptionSing {
 		return instance;
 	}
 	
-	// modif
+
 }

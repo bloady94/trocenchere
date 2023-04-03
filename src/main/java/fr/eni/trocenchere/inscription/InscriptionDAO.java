@@ -7,5 +7,5 @@ public interface InscriptionDAO {
 
 	public void insertUtilisateur(Utilisateur utilisateur) throws BusinessException; 
 
-	// modif
+
 }
