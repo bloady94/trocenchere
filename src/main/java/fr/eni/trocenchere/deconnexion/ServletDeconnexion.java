@@ -27,7 +27,7 @@ public class ServletDeconnexion extends HttpServlet {
 	    	session.removeAttribute("isConnected");
 	        session.invalidate();
 	    }
-	    response.sendRedirect("/WEB-INF/index.jsp");
+	    response.sendRedirect("http://localhost:8080/trocenchere/");
 		
 	}
 
