@@ -9,7 +9,7 @@ import fr.eni.trocenchere.bo.Utilisateur;
 import fr.eni.trocenchere.connexion.ConnectionProvider;
 import fr.eni.trocenchere.dal.CodesResultatDAL;
 
-public class InscriptionDAOJdbcImpl implements inscriptionDAO {
+public class InscriptionDAOJdbcImpl implements InscriptionDAO {
 
 	
 	private static final String INSERT_UTILISATEUR = "INSERT INTO utilisateur (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) "

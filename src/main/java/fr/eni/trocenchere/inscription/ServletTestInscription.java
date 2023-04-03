@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 //import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
@@ -21,13 +21,16 @@ import fr.eni.trocenchere.bo.Utilisateur;
 @WebServlet("/ServletTestInscription")
 public class ServletTestInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private InscriptionSing inscriptionSing;
+
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ServletTestInscription() {
-        super();
-        // TODO Auto-generated constructor stub
+    	inscriptionSing = new InscriptionSing();
+
     }
 
 	/**
@@ -35,13 +38,9 @@ public class ServletTestInscription extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd=null;
-		if(request.getSession().getAttribute("isConnected")!=null) {
-			rd=request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/index.jsp");
-		}else {
-			rd = request.getRequestDispatcher("/jsp/inscription.jsp");
-		}
-		rd.forward(request, response);
+	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/inscription.jsp");
+	    dispatcher.forward(request, response);
+		
 	}	
 	
 
@@ -50,7 +49,7 @@ public class ServletTestInscription extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		// R�cup�ration des param�tres 
 		String pseudo = request.getParameter("pseudo");
 		String nom= request.getParameter("nom");
 		String prenom= request.getParameter("prenom");
@@ -62,25 +61,35 @@ public class ServletTestInscription extends HttpServlet {
 		String motDePasse= request.getParameter("motDePasse");
 		String motDePasseConfirmation=request.getParameter("confirmationMDP");
 		
-
+	
+		
+		// Cr�ation d'un nouvel utilisateur
+		Utilisateur user = new Utilisateur();
+		
+		// Cr�ation de dao de type ConnexionManager, On ins�re dedans l'instance de la singleton.
+		InscriptionManager dao = inscriptionSing.getInstance();
+		
 		try {
-			InscriptionManager IManager =  InscriptionManager.getInstance();
-			Utilisateur utilisateurConnecte = IManager.ajouterUtilisateur(pseudo,nom,prenom,email,telephone,rue,codePostal,ville,motDePasse,motDePasseConfirmation);
-			request.getSession().setAttribute("isConnected", utilisateurConnecte);
-			request.setAttribute("connexion", "ok");
+			user = dao.ajouterUtilisateur1(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 0, false);
+			
 			
 		} catch (Exception e) {
-//			List<String> msgErr = new ArrayList<>();
-//			
-//			for(int i : ((BusinessException) e).getListeCodesErreur()) {
-//				msgErr.add(LecteurMessage.getMessageErreur(i));
-//			}
-//			request.setAttribute("listeCodesErreur", msgErr);
-//			rd=request.getRequestDispatcher("/jsp/inscription.jsp");
-			e.printStackTrace();	
+			e.printStackTrace();
+
+		}
+		
+		if (user !=null) {
+		
+			response.sendRedirect("/trocenchere/jsp/index.jsp");
+			HttpSession session = request.getSession(true);
+			session.setAttribute("utilisateur", user);
+			
+		}else{
+			request.setAttribute("errorMessage", "Les mdp ne sont pas identiques");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/inscription.jsp");
+		    dispatcher.forward(request, response);
+			
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/trocenchere/jsp/index.jsp");
-		rd.forward(request, response);
 	}
 }

@@ -30,6 +30,11 @@ public class BusinessException extends Exception {
 	{
 		return this.listeCodesErreur;
 	}
+
+	public void ajouterErreur(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

@@ -2,7 +2,7 @@ package fr.eni.trocenchere.inscription;
 
 public class DAOFactory {
 
-	public static inscriptionDAO getInscriptionDAO() {
+	public static InscriptionDAO getInscriptionDAO() {
 		return new InscriptionDAOJdbcImpl();
 	}
 }
