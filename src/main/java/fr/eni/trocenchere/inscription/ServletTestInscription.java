@@ -92,4 +92,5 @@ public class ServletTestInscription extends HttpServlet {
 		}
 
 	}
+	// modif
 }

@@ -5,4 +5,6 @@ public class DAOFactory {
 	public static InscriptionDAO getInscriptionDAO() {
 		return new InscriptionDAOJdbcImpl(); 
 	}
+	
+	// modif
 }

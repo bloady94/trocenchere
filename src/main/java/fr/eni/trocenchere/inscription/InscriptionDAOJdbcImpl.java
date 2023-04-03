@@ -56,5 +56,5 @@ public class InscriptionDAOJdbcImpl implements InscriptionDAO {
 		}
 		
 	}
-
+	// modif
 }
