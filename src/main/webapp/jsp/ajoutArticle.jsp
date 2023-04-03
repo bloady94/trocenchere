@@ -31,6 +31,7 @@
    <br>
     
     
+    
   <label for="article">Photo de l'Article :</label>
 	<img src="chemin/vers/mon/image.jpg"><br>
 	

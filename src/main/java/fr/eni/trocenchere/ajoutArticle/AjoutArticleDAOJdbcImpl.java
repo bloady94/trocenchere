@@ -21,6 +21,7 @@ public class AjoutArticleDAOJdbcImpl implements AjoutArticleDAO{
 												+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		
+	
 
 	private void ajoutArticle(ArticleVendu articleVendu) throws Exception {
 	

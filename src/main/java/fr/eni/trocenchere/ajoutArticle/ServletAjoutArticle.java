@@ -139,6 +139,7 @@ public class ServletAjoutArticle extends HttpServlet {
         if (test.equals("")) { 
         	photoOuPas = false; }
         
+        
 		ArticleVendu article = new ArticleVendu(nom, description, debutEnchere, 
 								finEnchere, prixInitial, utilisateur, categorie, retrait );
         
