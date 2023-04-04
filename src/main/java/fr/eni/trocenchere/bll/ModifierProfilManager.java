@@ -140,5 +140,4 @@ public class ModifierProfilManager implements ModifierProfil {
 		}
 
 	}
-
 }

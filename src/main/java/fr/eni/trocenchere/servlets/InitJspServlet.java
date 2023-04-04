@@ -42,7 +42,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			ArticleManager articleManager = new ArticleManager();
 			List<ArticleVendu> listeArticles=new ArrayList<>();
 
-				articleManager.selectionnerTousLesArticles();
+			listeArticles.addAll(articleManager.selectionnerTousLesArticles());
 
 			request.setAttribute("listeArticles", listeArticles);
 		} catch (BusinessException e) {

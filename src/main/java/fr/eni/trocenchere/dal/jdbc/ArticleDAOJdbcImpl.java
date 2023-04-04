@@ -19,10 +19,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String INSERT_ARTICLEVENDU = "INSERT INTO articlevendu (nom, description, date_debut_enchere, date_fin_enchere, "
 			+ "prix_initial, Utilisateur_no_utilisateur, Categorie_no_categorie)" + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 	
-	private static final String SELECT_ARTICLES = "SELECT a.nom as nomArticle, description, date_debut_enchere, date_fin_enchere, prix_initial, "
-			+ "prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie, libelle FROM articlevendu as a"
-			+ "left join categorie as c on c.no_categorie = a.Categorie_no_categorie"
-			+ "left join utilisateur as u on u.no_utilisateur = a.Utilisateur_no_utilisateur";
+
+	private static final String SELECT_ARTICLES = "SELECT no_article, nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie FROM articlevendu";
+
 
 	@Override
 	public void ajoutarticle(ArticleVendu articleVendu) throws BusinessException {
@@ -53,7 +52,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 
-	@Override
+
 /*	public List<ArticleVendu> selectArticles() throws BusinessException {
 
 		List<ArticleVendu> articles = null;
@@ -101,51 +100,52 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		return articles;
 	}*/
 
-	List<ArticleVendu> listeArticles = new ArrayList<ArticleVendu>(),
-	
-	try(
-	Connection cnx = ConnectionProvider.getConnection())
-	{
-		PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLES);
-		ResultSet rs = pstmt.executeQuery();
+	public List<ArticleVendu> selectArticles() throws BusinessException {
+		List<ArticleVendu> listeArticles = new ArrayList<ArticleVendu>();
 		
-		while (rs.next()) {
-			
-			// ETAPE 1 : récupération des valeurs pour la ligne depuis la base
-			Integer noArticle = rs.getInt("no_article");
-			String articleNom = rs.getString("nomArticle");
-			String articleDescription = rs.getString("dscription");
-			LocalDate articleDateDebut = rs.getDate("date_debut_enchere").toLocalDate();
-			LocalDate articleDateFin = rs.getDate("date_fin_enchere").toLocalDate();
-			Integer prixInitial = rs.getInt("prix_initial");
-			Integer prixFinal = rs.getInt("prix_vente");
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLES);
+            //pstmt.setInt(1, noArticle);
+            
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				// ETAPE 1 : récupération des valeurs pour la ligne depuis la base
+				Integer noArticle = rs.getInt("no_article");
+				String articleNom = rs.getString("nom");
+				String articleDescription = rs.getString("description");
+				LocalDate articleDateDebut = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate articleDateFin = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer prixInitial = rs.getInt("prix_initial");
+				Integer prixFinal = rs.getInt("prix_vente");
 
-			Categorie categorie = new Categorie(rs.getInt("Categorie_no_categorie"), rs.getString("libelle"));
+				Integer noUtilisateur = rs.getInt("Utilisateur_no_utilisateur");
+				ProfilDAOJdbcImpl profilDAO = new ProfilDAOJdbcImpl();
+				Utilisateur util = profilDAO.selectUtilisateurByID(noUtilisateur);
 
-			Utilisateur utilisateur = new Utilisateur(rs.getInt("Utilisateur_no_utilisateur"), rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("telephone");
-			
-			ArticleVendu articleTest = new ArticleVendu();
-			
-			articleTest.setNomArticle(articleNom);
-			articleTest.setDescription(articleDescription);
-			articleTest.setDebutEnchere(articleDateDebut);
-			articleTest.setFinEnchere(articleDateFin);
-			articleTest.setPrixInitial(prixInitial);
-			articleTest.setPrixFinal(prixFinal);
+				Integer noCategorie = rs.getInt("Categorie_no_categorie");
+				CategorieDAOJdbcImpl categorieDAO = new CategorieDAOJdbcImpl();
+				Categorie categorie = categorieDAO.selectById(noCategorie);
 
-			articleTest.setUtilisateur(utilisateur);
-			articleTest.setCategorie(categorie);
-			
-			listeArticles.add(articleTest);
+				ArticleVendu articleTest = new ArticleVendu();
+				articleTest.setNoArticle(noArticle);
+				articleTest.setNomArticle(articleNom);
+				articleTest.setDescription(articleDescription);
+				articleTest.setDebutEnchere(articleDateDebut);
+				articleTest.setFinEnchere(articleDateFin);
+				articleTest.setPrixInitial(prixInitial);
+				articleTest.setPrixFinal(prixFinal);
+				articleTest.setUtilisateur(util);
+				articleTest.setCategorie(categorie);
+				listeArticles.add(articleTest);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
+			throw businessException;
 		}
-	}catch(
-	Exception e)
-	{
-		e.printStackTrace();
-		BusinessException businessException = new BusinessException();
-		businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_ECHEC);
-		throw businessException;
-	}return listeArticles;
-}
+		return listeArticles;
+	}
+
 
 }

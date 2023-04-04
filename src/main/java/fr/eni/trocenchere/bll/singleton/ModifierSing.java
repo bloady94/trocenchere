@@ -12,5 +12,4 @@ public class ModifierSing {
 		}
 		return instance;
 	}
-
 }

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.trocenchere.BusinessException;
+import fr.eni.trocenchere.bll.ConnexionManager;
 import fr.eni.trocenchere.bll.InscriptionManager;
 import fr.eni.trocenchere.bll.ModifierProfilManager;
+import fr.eni.trocenchere.bll.singleton.ConnexionSing;
 import fr.eni.trocenchere.bll.singleton.ModifierSing;
 import fr.eni.trocenchere.bo.Utilisateur;
 
@@ -22,12 +25,14 @@ import fr.eni.trocenchere.bo.Utilisateur;
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private ModifierSing modifierSing;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletModifierProfil() {
-		super();
-		// TODO Auto-generated constructor stub
+		modifierSing = new ModifierSing();
+
 	}
 
 	/**
@@ -47,80 +52,11 @@ public class ServletModifierProfil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// Récupération des paramètres du formulaire
-		HttpSession session = request.getSession();
-		
-		// Je récupère tous les paramètres du formulaire.
-		
-		String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
-		String motDePasseActuel = request.getParameter("motDePasseActuel");
-		String newMotDePasse = request.getParameter("motDePasse");
-		String newMotDePasseConfirmation = request.getParameter("confirmationMDP");
-		
-		
-		
-		// Si le mot de passe correspond au MDP de l'utilisateur, alors vérifier que le nouveau mdp correspond bien à la confirmation.
 
-		
-		
-		
-		// Si tout est bon, alors j'update les données.
-		
-		
-		
-		
-		/*
-		UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		try {
-			utilisateurManager.update(utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasseActuel, nouveauMotDePasse);
-			session.setAttribute("utilisateur", utilisateur);
-			response.sendRedirect(request.getContextPath() + "/accueil");
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			request.setAttribute("listeErreurs", e.getListeCodesErreur());
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
-			dispatcher.forward(request, response);
-		}
-	}
-	*/
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		// Je vais chopper une session
 		HttpSession session = request.getSession(true);
-		
-		// Ensuite j'insère dans un utilisateur la session qu'on récupère
-		// dans la servletConnexion.
-		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
-		
-		
-		// On récupère les paramètres du formulaire
+		session.getAttribute("utilisateur"); // manque utilisateur à rajouter en paramètre
+
+		// Récupération des paramètres du formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -130,28 +66,37 @@ public class ServletModifierProfil extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
-		String newMotDePasse = request.getParameter("motDePasse");
-		String newMotDePasseConfirmation = request.getParameter("confirmationMDP");
+		String nouveauMDP = request.getParameter("nouveauMDP");
+		String confirmationMDP = request.getParameter("confirmationMDP");
 
-		
-		ModifierProfilManager dao = ModifierSing.getInstance();
+		// J'envoie les paramètres récup dans la bll pour faire les vérifications et
+		// l'update
 
+		// Ma méthode updateUtilisateur a un utilisateur en paramètre donc création d'un
+		// user et on met dedans tous les paramètres du formulaire.
+		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+				motDePasseActuel, nouveauMDP);
+
+		ModifierProfilManager dao = modifierSing.getInstance();
+
+		// Il faut que je trouve un moyen d'envoyer user et les paramètres à la bll
 		try {
-			utilisateur = dao.UpdateUtilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasseActuel);
-		} catch (Exception e) {
+			user = dao.UpdateUtilisateur(user, pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasseActuel, nouveauMDP);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		}
 
-		// Ensuite je demande le crédit de l'utilisateur, je nomme la clef "crédit"
-		// que j'utiliserais dans la jsp
-		request.setAttribute("credit", utilisateur.getCredit());
+		if (user != null) {
+			response.sendRedirect("/trocenchere/jsp/profil.jsp");
 
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/profil.jsp");
-		rd.forward(request, response);
-		*/
+		} else {
+			request.setAttribute("errorMessage", "problème, c'est tout ce que je vais te dire car pas d'inspi...");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
+			dispatcher.forward(request, response);
 
+		}
 
 	}
 

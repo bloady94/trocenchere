@@ -1,5 +1,6 @@
 package fr.eni.trocenchere.dal;
 
+import fr.eni.trocenchere.dal.jdbc.ArticleDAOJdbcImpl;
 import fr.eni.trocenchere.dal.jdbc.ConnexionDAOJdbcImpl;
 import fr.eni.trocenchere.dal.jdbc.EncheresDAOJdbcImpl;
 import fr.eni.trocenchere.dal.jdbc.InscriptionDAOJdbcImpl;
@@ -27,5 +28,9 @@ public class DAOFactory {
 	
 	public static ConnexionDAO getConnexionDAO() {
 		return new ConnexionDAOJdbcImpl();
+	}
+	
+	public static ArticleDAO getArticleDAO() {
+		return new ArticleDAOJdbcImpl();
 	}
 }
