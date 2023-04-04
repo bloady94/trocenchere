@@ -19,6 +19,8 @@
 
     <label for="description">Description :</label>
     <textarea name="description" id="description"></textarea><br>
+    
+    
 
     <label for="categorie">Categorie :</label>
 	<select name="categorie">
@@ -31,7 +33,7 @@
    <br>
     
     
-    
+   
   <label for="article">Photo de l'Article :</label>
 	<img src="chemin/vers/mon/image.jpg"><br>
 	
@@ -45,7 +47,11 @@
 	    <input type="date" name="fin de l'enchere" id="fin de l'enchere"><br>
 	    
 	     <label for="retrait">RETRAIT</label><br>
-  
+	     
+	   <%
+	   Utilisateur utilisateur = (Utilisateur) request.getAttribute("Utilisateur");
+	   %>
+	    
     <label for="rue">Rue :</label>
     <input type="text" name="rue" id="rue"><br>
     
@@ -55,6 +61,14 @@
     <label for="ville">Ville :</label>
     <input type="text" name="ville" id="ville"><br>
     
+    <% 
+    ArticleVendu ajoutArticle = (ArticleVendu) request.getAttribute("articleAManipuler");
+    if (ajoutArticle != null) { 
+    %>
+	<p style="color: green;">L'article a été ajouté avec succès</p> 
+	<% 
+	} 
+	%>
 
     <input type="submit" value="Enregistrer">
     <input type="submit" value="Annuler">

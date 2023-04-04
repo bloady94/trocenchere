@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.bll.InscriptionManager;
-import fr.eni.trocenchere.bll.InscriptionSing;
+import fr.eni.trocenchere.bll.singleton.InscriptionSing;
 //import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
 
@@ -62,7 +62,7 @@ public class ServletTestInscription extends HttpServlet {
 		
 	
 		
-		// Crï¿½ation d'un nouvel utilisateur
+		// Création d'un nouvel utilisateur
 		Utilisateur user = new Utilisateur();
 		
 		// Crï¿½ation de dao de type ConnexionManager, On insï¿½re dedans l'instance de la singleton.

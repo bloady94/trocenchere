@@ -2,6 +2,7 @@ package fr.eni.trocenchere.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.javaee.module4.servlets.CodesResultatServlets;
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bll.ArticleManager;
+import fr.eni.trocenchere.bll.CategorieManager;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Categorie;
 import fr.eni.trocenchere.bo.Enchere;
@@ -62,17 +64,18 @@ public class ServletAjoutArticle extends HttpServlet {
 		 Utilisateur utilisateur = new Utilisateur();
 	      utilisateur.setNoUtilisateur(1);
 	      
-	    //TODO récupère la liste des categorie => select libelle from categorie
+	    // récupère la liste des categorie => select libelle from categorie
 	      List<Categorie> ListCategorie = new ArrayList<>();
-	      z
+	      
 	      if(NoUtilisateur == null) {
 	    	  response.sendRedirect("ServletConnexion");
 	      }
 	      else { 
-	    	  try { ListCategorie = categorieManager.selectAllCategorie(); 
+	    	  try { ListCategorie = CategorieManager.selectArticleVendu(); 
 	      request.setAttribute(LIST_CATEGORIE, ListCategorie); 
+	      
 	      NoUtilisateur = (Integer) request.getSession().getAttribute("id"); 
-	      utilisateur = utilisateurManager.selectParNoUtilisateur(NoUtilisateur); 
+	      utilisateur.setNoUtilisateur(NoUtilisateur); 
 	      request.setAttribute(UTILISATEUR, utilisateur); } catch (BusinessException e1) { e1.printStackTrace(); }
 	      }
 	      
@@ -82,31 +85,32 @@ public class ServletAjoutArticle extends HttpServlet {
 	}
 
 	/**
+	 * @param FinEnchere 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response, ChronoLocalDate FinEnchere) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(); 
 		
 		ArticleManager articleManager = null;
 		
-		String nomArticle = null;
-		String description = null;
-		Integer noCategorie = null;
-		LocalDate dateDebutEnchere = null;
-		LocalDate dateFinEnchere = null;
-		Integer prixInitial = null;
-		String rue = null;
-		String codePostal = null;
-		String nomVille = null;
-		Categorie categorie = null;
-		Retrait retrait=null;
-		Integer noUtilisateur;
-		Utilisateur utilisateur = new Utilisateur();
-		ArticleVendu articleVendu = null;
-		Integer resultatComparaisonDates = null;
-		List<Integer> listeCodesErreur = new ArrayList<>();
-		String photo = null;
+	//	String nomArticle = null;
+	//	String description = null;
+	//	Integer noCategorie = null;
+	//	LocalDate dateDebutEnchere = null;
+	//	LocalDate dateFinEnchere = null;
+	//	Integer prixInitial = null;
+	//	String rue = null;
+	//	String codePostal = null;
+	//	String nomVille = null;
+	//	Categorie categorie = null;
+	//	Retrait retrait=null;
+	//	Integer noUtilisateur;
+	//	Utilisateur utilisateur = new Utilisateur();
+	//	ArticleVendu articleVendu = null;
+	//	Integer resultatComparaisonDates = null;
+	//	List<Integer> listeCodesErreur = new ArrayList<>();
+	//	String photo = null;
 		
 		
 		
@@ -124,14 +128,14 @@ public class ServletAjoutArticle extends HttpServlet {
         String rue = request.getParameter("rue");
         String codePostal = request.getParameter("codePostal");
         String ville = request.getParameter("ville");
-        Retrait retrait = new Retrait(rue, codePostal, ville);
+        Retrait retrait = new Retrait(rue, codePostal, ville,);
         		
         String categorie = request.getParameter("categorie");
         
         Utilisateur utilisateur1 = new Utilisateur();
-        utilisateur.setNoUtilisateur(1);
+        utilisateur1.setNoUtilisateur(1);
         
-        Categorie categorie = new Categorie();
+        Categorie categorie1 = new Categorie();
         categorie.setNoCategorie(1);
 
         System.out.println(request.getParameter("imageArticle"));
@@ -143,38 +147,38 @@ public class ServletAjoutArticle extends HttpServlet {
         
         
 		ArticleVendu article = new ArticleVendu(nom, description, debutEnchere, 
-								finEnchere, prixInitial, utilisateur, categorie, retrait );
-        
+								finEnchere, prixInitial, utilisateur1, categorie, retrait,);
         System.out.println("articleManager" + article);
         
         if (photoOuPas) { photo = request.getParameter("imageArticle");
-        articleVendu.setPhoto(photo);
+        ArticleVendu.setPhoto(photo);
         
         ArticleVendu article1 = new ArticleVendu(nom, description, debutEnchere, 
-				finEnchere, prixInitial, utilisateur, categorie, retrait);
+				finEnchere, prixInitial, utilisateur1, categorie, retrait,);
         
-        } 
+      } 
         retrait = new Retrait(rue,codePostal,ville);
-        resultatComparaisonDates = dateDebutEnchere.compareTo(dateFinEnchere); 
+       resultatComparaisonDates = debutEnchere.compareTo(FinEnchere); 
         
-        if(resultatComparaisonDates > 0) {
+       if(resultatComparaisonDates > 0) {
         }
-        // la date de début est postérieure à la date de fin listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR); request.setAttribute("listeCodesErreur", listeCodesErreur);
+        la date de début est postérieure à la date de fin listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR); request.setAttribute("listeCodesErreur", listeCodesErreur);
         
         listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR);
         request.setAttribute("listeCodesErreur", listeCodesErreur);
           if (resultatComparaisonDates == 0) 
         { 
         	// les deux dates sont égales listeCodesErreur.add(CodesResultatServlets.ERREUR_DATES_IDENTIQUES); request.setAttribute("listeCodesErreur", listeCodesErreur); }else if(resultatComparaisonDates < 0){ // la date de début est antérieure à la date de fin // appel à la BLL pour ajouter Article + Retrait articleVenduManager.ajouterArticleVendu(articleVendu); retraitManager.ajouterRetrait(retrait); request.setAttribute("articleAManipuler", articleVendu); // permettre d'instancier un attribut dans la session pour le recuperer// dans une autre Servlet session.setAttribute(ARTICLE_A_MANIPULER, articleVendu); } } catch (Exception e) { e.printStackTrace(); }
-        }
+       }
 	
     
         doGet(request, response);
-       
-        
+       		
+        }
+	}
 
-		
-}
+
 	
-}
+
+
 

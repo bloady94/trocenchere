@@ -106,6 +106,12 @@ public class ArticleVendu {
 	}
 
 
+	public static void setPhoto(String photo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 	
 	
