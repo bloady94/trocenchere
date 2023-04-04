@@ -39,8 +39,7 @@ public class ArticleManager {
 				{
 		        	this.articleDAO.ajoutarticle(ajoutarticle);
 					
-				}else 
-				{
+				} else {
 					throw businessException;
 				}
 				
