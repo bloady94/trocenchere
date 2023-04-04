@@ -2,6 +2,7 @@ package fr.eni.trocenchere.bll;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.Utilisateur;
+import fr.eni.trocenchere.dal.DAOFactory;
 import fr.eni.trocenchere.dal.ProfilDAO;
 
 public class ProfilManagerImpl implements ProfilManager{
@@ -21,7 +22,7 @@ public class ProfilManagerImpl implements ProfilManager{
 			
 			if(!businessException.hasErreurs())
 			{
-				utilisateurTest = profilDao.select_utilisateur(utilisateur);
+				utilisateurTest = profilDao.selectUtilisateurByID(utilisateur.getNoUtilisateur());
 			}
 			else
 			{

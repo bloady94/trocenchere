@@ -56,7 +56,24 @@
 		if (listeArticles != null && listeArticles.size() > 0) {
 			for (ArticleVendu articleVendu : listeArticles) {
 		%>
+		<div class="article">
+		<h4>Nom de l'article </h4>
 		<p><%=articleVendu.getNomArticle()%></p>
+		<h4>Description </h4>
+		<p><%=articleVendu.getDescription()%></p>
+		<h4>Proposé à l'enchère le </h4>
+		<p><%=articleVendu.getDebutEnchere()%></p>
+		<h4>Fin de l'enchère prévue le </h4>
+		<p><%=articleVendu.getFinEnchere()%></p>
+		<h4>Mise à prix </h4>
+		<p><%=articleVendu.getPrixInitial()%></p>
+		<h4>Enchère actuelle </h4>
+		<p><%=articleVendu.getPrixFinal()%></p>
+		<h4>Vendeur </h4>
+		<p><%=articleVendu.getUtilisateur().getPseudo()%></p>
+		<h4>Catégorie </h4>
+		<p><%=articleVendu.getCategorie().getLibelle()%></p>
+		</div>
 		<%
 		}
 		} else {
