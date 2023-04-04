@@ -13,10 +13,6 @@ import fr.eni.trocenchere.dal.jdbc.ArticleDAOJdbcImpl;
 public class ArticleManager {
 	
 	private ArticleDAOJdbcImpl articleDAO;
-	
-	
-	
-
 
 	public ArticleVendu ajoutArticle(  String nomArticle, String description, LocalDate debutEnchere, LocalDate finEnchere,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie) throws BusinessException {
