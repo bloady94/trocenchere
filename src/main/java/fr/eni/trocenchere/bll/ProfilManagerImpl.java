@@ -14,20 +14,8 @@ public class ProfilManagerImpl implements ProfilManager{
 			this.profilDao=DAOFactory.getProfilDAO();
 		}
 		
-		public Utilisateur afficherProfil(Utilisateur utilisateur) throws BusinessException 
+		public Utilisateur selectUtilisateurById(Integer noUtilisateur) throws BusinessException 
 		{
-			
-			BusinessException businessException = new BusinessException();
-			
-			if(!businessException.hasErreurs())
-			{
-				utilisateur = profilDao.selectUtilisateurByID(utilisateur.getNoUtilisateur());
-			}
-			else
-			{
-				utilisateur = null;
-				throw businessException;
-			}
-			return utilisateur;
+				return profilDao.selectUtilisateurByID(noUtilisateur);
 		}
 }
