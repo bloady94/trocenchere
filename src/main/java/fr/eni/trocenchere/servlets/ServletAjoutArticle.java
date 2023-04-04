@@ -64,7 +64,7 @@ public class ServletAjoutArticle extends HttpServlet {
 	      
 	    //TODO récupère la liste des categorie => select libelle from categorie
 	      List<Categorie> ListCategorie = new ArrayList<>();
-	      
+	      z
 	      if(NoUtilisateur == null) {
 	    	  response.sendRedirect("ServletConnexion");
 	      }
