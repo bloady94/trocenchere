@@ -9,5 +9,5 @@ import fr.eni.trocenchere.dal.ProfilDAO;
 >>>>>>> branch 'master' of https://github.com/bloady94/trocenchere.git
 
 public interface ProfilManager {
-	public Utilisateur afficherProfil(Utilisateur utilisateur) throws BusinessException;
+	public Utilisateur selectUtilisateurById(Integer noUtilisateur) throws BusinessException;
 }

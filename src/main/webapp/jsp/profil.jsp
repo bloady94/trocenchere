@@ -1,4 +1,5 @@
 <%@page import="fr.eni.trocenchere.bo.Utilisateur"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,8 +18,9 @@
 			<table>
 				<tbody>
 					<%
-					Utilisateur utilisateur = new Utilisateur();
-					utilisateur = (Utilisateur) request.getAttribute("utilisateur");
+					Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
+					Boolean connected = false;
+					if (utilisateur != null){
 					%>
 					<tr>
 						<td>Pseudo :
@@ -38,7 +40,7 @@
 					<tr>
 						<td>Email :
 						<td>
-						<td><%=utilisateur.getNom()%></td>
+						<td><%=utilisateur.getEmail()%></td>
 					</tr>
 					<tr>
 						<td>Téléphone :
@@ -60,6 +62,13 @@
 						<td>
 						<td><%=utilisateur.getVille()%></td>
 					</tr>
+					<%
+					} else {
+					%>
+					<p>Pas d'informations à afficher</p>
+					<%
+					}
+					%>
 				</tbody>
 			</table>
 			<input type="submit" value="Modifier">

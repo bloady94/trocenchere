@@ -53,7 +53,21 @@ public class ServletConnexion extends HttpServlet {
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("MotDePasse");
 		
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		
 		Utilisateur user = new Utilisateur();
+		
+		user.setNom(nom);
+		user.setPrenom(prenom);
+		user.setTelephone(telephone);
+		user.setRue(rue);
+		user.setCodePostal(codePostal);
+		user.setVille(ville);
 		
 		user.setEmail(identifiant); 
 		user.setPseudo(identifiant);

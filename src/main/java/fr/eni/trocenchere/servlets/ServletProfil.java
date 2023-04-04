@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bll.ManagerFactory;
@@ -24,17 +25,21 @@ public class ServletProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
+		/*try {
 			ProfilManager profilManager = ManagerFactory.getProfilManager();
-			Utilisateur utilisateur = new Utilisateur();
+			Utilisateur utilisateur = profilManager.selectUtilisateurById(11);*/
 
-			profilManager.afficherProfil(utilisateur);
+			HttpSession session = request.getSession(true);
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+			System.out.println(utilisateur);
 
 			request.setAttribute("utilisateur", utilisateur);
-		} catch (BusinessException e) {
+			
+		/*} catch (BusinessException e) {
 			e.printStackTrace();
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
-		}
+		}*/
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/profil.jsp");
 		rd.forward(request, response);
 	}
