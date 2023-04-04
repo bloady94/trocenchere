@@ -18,17 +18,16 @@ public class ProfilManagerImpl implements ProfilManager{
 		{
 			
 			BusinessException businessException = new BusinessException();
-			Utilisateur utilisateurTest = new Utilisateur();
 			
 			if(!businessException.hasErreurs())
 			{
-				utilisateurTest = profilDao.selectUtilisateurByID(utilisateur.getNoUtilisateur());
+				utilisateur = profilDao.selectUtilisateurByID(utilisateur.getNoUtilisateur());
 			}
 			else
 			{
-				utilisateurTest = null;
+				utilisateur = null;
 				throw businessException;
 			}
-			return utilisateurTest;
+			return utilisateur;
 		}
 }

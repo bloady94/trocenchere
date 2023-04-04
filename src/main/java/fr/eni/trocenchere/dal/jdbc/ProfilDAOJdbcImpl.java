@@ -39,7 +39,6 @@ public class ProfilDAOJdbcImpl implements ProfilDAO {
                 
                 
                    
-                    utilisateurTest.setNoUtilisateur(utilisateurNo);
                     utilisateurTest.setPseudo(utilisateurPseudo); // 4 lignes factorisables dans une fonction à part
                     utilisateurTest.setNom(utilisateurNom);
                     utilisateurTest.setPrenom(utilisateurPrenom);
