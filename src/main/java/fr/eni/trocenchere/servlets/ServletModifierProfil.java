@@ -24,9 +24,8 @@ import fr.eni.trocenchere.bo.Utilisateur;
 @WebServlet("/ServletModifierProfil")
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private ModifierSing modifierSing;
 
+	private ModifierSing modifierSing;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -57,8 +56,6 @@ public class ServletModifierProfil extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.getAttribute("utilisateur"); // manque utilisateur à rajouter en paramètre
 
-		
-		
 		// Récupération des paramètres du formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -71,38 +68,36 @@ public class ServletModifierProfil extends HttpServlet {
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
 		String nouveauMDP = request.getParameter("nouveauMDP");
 		String confirmationMDP = request.getParameter("confirmationMDP");
-		
-		
-		// J'envoie les paramètres récup dans la bll pour faire les vérifications et l'update
-		
-		// Ma méthode updateUtilisateur a un utilisateur en paramètre donc création d'un user et on met dedans tous les paramètres du formulaire.
-		Utilisateur user = new Utilisateur(pseudo,nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, nouveauMDP);
-		
-		
+
+		// J'envoie les paramètres récup dans la bll pour faire les vérifications et
+		// l'update
+
+		// Ma méthode updateUtilisateur a un utilisateur en paramètre donc création d'un
+		// user et on met dedans tous les paramètres du formulaire.
+		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+				motDePasseActuel, nouveauMDP);
+
 		ModifierProfilManager dao = modifierSing.getInstance();
 
-		
 		// Il faut que je trouve un moyen d'envoyer user et les paramètres à la bll
 		try {
-			user = dao.UpdateUtilisateur(user, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseActuel, nouveauMDP);
+			user = dao.UpdateUtilisateur(user, pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasseActuel, nouveauMDP);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if (user !=null) {
-			response.sendRedirect("/trocenchere/jsp/index.jsp");
-			HttpSession session = request.getSession(true);
-			session.setAttribute("utilisateur", user);
-			
-		}else {
-			request.setAttribute("errorMessage", "Identifiant ou mot de passe incorrect.");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
-		    dispatcher.forward(request, response);
-			
+
+		if (user != null) {
+			response.sendRedirect("/trocenchere/jsp/profil.jsp");
+
+		} else {
+			request.setAttribute("errorMessage", "problème, c'est tout ce que je vais te dire car pas d'inspi...");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
+			dispatcher.forward(request, response);
+
 		}
-		
-		
+
 	}
 
 }
