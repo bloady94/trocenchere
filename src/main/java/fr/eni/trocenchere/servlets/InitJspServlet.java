@@ -26,8 +26,6 @@ public class InitJspServlet extends HttpServlet {
 
 	
     public InitJspServlet() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +42,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			ArticleManager articleManager = new ArticleManager();
 			List<ArticleVendu> listeArticles=new ArrayList<>();
 
-				listeArticles.addAll(articleManager.selectionnerTousLesArticles());
+				articleManager.selectionnerTousLesArticles();
 
 			request.setAttribute("listeArticles", listeArticles);
 		} catch (BusinessException e) {
