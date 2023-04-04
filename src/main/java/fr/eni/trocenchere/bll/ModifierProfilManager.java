@@ -24,7 +24,7 @@ public class ModifierProfilManager implements ModifierProfil {
 		
 		this.validerPseudo(pseudo, businessException);
 		this.validerEmail(email, businessException);
-		this.validerCoordonnees(pseudo,nom, prenom, telephone, rue, codePostal, ville, motDePasse);
+		this.validerCoordonnees(pseudo,nom, prenom, telephone, rue, codePostal, ville, motDePasse, businessException);
 		
 		
 		return null;
@@ -32,10 +32,47 @@ public class ModifierProfilManager implements ModifierProfil {
 
 	
 	private void validerCoordonnees(String pseudo, String nom, String prenom, String telephone, String rue, String codePostal,
-			String ville, String motDePasse) {
+			String ville, String motDePasse, BusinessException businessException) {
 
-		if(pseudo)
+		if(pseudo ==null || pseudo.isBlank() || pseudo.isEmpty()){
+			businessException.ajouterErreur("Le pseudo ne peut pas être vide");
+		}
 		
+		if(nom ==null || nom.isBlank() || nom.isEmpty()){
+			businessException.ajouterErreur("Le nom ne peut pas être vide");
+		}
+		
+		if(prenom ==null || prenom.isBlank() || prenom.isEmpty()){
+			businessException.ajouterErreur("Le prénom ne peut pas être vide");
+		}
+		
+		if(!telephoneEstCorrect(telephone)){
+			businessException.ajouterErreur("Le téléphone n'est pas valide");
+		}
+		
+		if(rue ==null || rue.isBlank() || rue.isEmpty()){
+			businessException.ajouterErreur("La rue ne peut pas être vide");
+		}
+		
+		if(!CodePostalCorrect(codePostal)){
+			businessException.ajouterErreur("Le téléphone n'est pas valide");
+		}
+		
+
+		
+		
+		
+	}
+
+	private boolean telephoneEstCorrect(String telephone) {
+		
+	    String regex = "^(\\+33|0)[1-9](\\d{2}){4}$";
+	    
+	    Pattern pattern = Pattern.compile(regex);
+	    
+	    Matcher matcher = pattern.matcher(telephone);
+	    
+	    return matcher.matches();
 	}
 
 	private void validerEmail(String email, BusinessException businessException) {
@@ -46,14 +83,14 @@ public class ModifierProfilManager implements ModifierProfil {
 			businessException.ajouterErreur("L'email ne peut pas être vide");
 		}
 		
-	    if (!emailCorrect(email)) {
+	    if (!emailEstCorrect(email)) {
 	        businessException.ajouterErreur("L'email n'est pas valide");
 	        return;
 	    }
 		
 	}
 
-	private boolean emailCorrect(String email) {
+	private boolean emailEstCorrect(String email) {
 		
 		// Cela permet de savoir ce que doit contenir l'email
 	    String regex = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
