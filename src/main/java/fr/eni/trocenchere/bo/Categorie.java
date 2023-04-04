@@ -7,15 +7,13 @@ public class Categorie {
 
 		private Integer noCategorie;
 		private String libelle;
-		private List<ArticleVendu> listeArticles = new ArrayList<>();
 		
 		public Categorie() {
 		}
 
-		public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> listeArticles) {
+		public Categorie(Integer noCategorie, String libelle) {
 			this.noCategorie = noCategorie;
 			this.libelle = libelle;
-			this.listeArticles = listeArticles;
 		}
 		
 		public Categorie(String libelle) {
@@ -37,14 +35,6 @@ public class Categorie {
 
 		public void setLibelle(String libelle) {
 			this.libelle = libelle;
-		}
-
-		public List<ArticleVendu> getListeArticles() {
-			return listeArticles;
-		}
-
-		public void setListeArticles(List<ArticleVendu> listeArticles) {
-			this.listeArticles = listeArticles;
 		}
 
 		@Override
