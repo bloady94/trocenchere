@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.trocenchere.BusinessException;
+import fr.eni.trocenchere.bll.ManagerFactory;
 import fr.eni.trocenchere.bll.ProfilManager;
 import fr.eni.trocenchere.bo.Utilisateur;
 
@@ -24,7 +25,7 @@ public class ServletProfil extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			ProfilManager profilManager = new ProfilManager();
+			ProfilManager profilManager = ManagerFactory.getProfilManager();
 			Utilisateur utilisateur = new Utilisateur();
 
 			profilManager.afficherProfil(utilisateur);

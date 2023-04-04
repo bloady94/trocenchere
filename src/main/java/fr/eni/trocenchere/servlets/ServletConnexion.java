@@ -22,15 +22,11 @@ import fr.eni.trocenchere.bo.Utilisateur;
 public class ServletConnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ConnexionSing connexionSing;
-
-
 	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletConnexion() {
-		connexionSing = new ConnexionSing();
 	}
 
 
@@ -65,7 +61,7 @@ public class ServletConnexion extends HttpServlet {
 
 		
 		// Création de dao de type ConnexionManager, On insère dedans l'instance de la singleton.
-		ConnexionManager dao = connexionSing.getInstance();
+		ConnexionManager dao = ConnexionSing.getInstance();
 		
 		try {
 			user = dao.authentification(identifiant, motDePasse);
