@@ -60,7 +60,6 @@ public class ServletTestInscription extends HttpServlet {
 		String motDePasse= request.getParameter("motDePasse");
 		String motDePasseConfirmation=request.getParameter("confirmationMDP");
 		
-	
 		
 		// Création d'un nouvel utilisateur
 		Utilisateur user = new Utilisateur();

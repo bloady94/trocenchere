@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.trocenchere.bll.InscriptionManager;
 import fr.eni.trocenchere.bll.ModifierProfilManager;
 import fr.eni.trocenchere.bll.singleton.ModifierSing;
 import fr.eni.trocenchere.bo.Utilisateur;
@@ -47,6 +48,70 @@ public class ServletModifierProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		// Récupération des paramètres du formulaire
+		HttpSession session = request.getSession();
+		
+		// Je récupère tous les paramètres du formulaire.
+		
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String motDePasseActuel = request.getParameter("motDePasseActuel");
+		String newMotDePasse = request.getParameter("motDePasse");
+		String newMotDePasseConfirmation = request.getParameter("confirmationMDP");
+		
+		
+		
+		// Si le mot de passe correspond au MDP de l'utilisateur, alors vérifier que le nouveau mdp correspond bien à la confirmation.
+
+		
+		
+		
+		// Si tout est bon, alors j'update les données.
+		
+		
+		
+		
+		/*
+		UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		try {
+			utilisateurManager.update(utilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+					motDePasseActuel, nouveauMotDePasse);
+			session.setAttribute("utilisateur", utilisateur);
+			response.sendRedirect(request.getContextPath() + "/accueil");
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			request.setAttribute("listeErreurs", e.getListeCodesErreur());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/modificationProfil.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+	*/
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		// Je vais chopper une session
 		HttpSession session = request.getSession(true);
 		
@@ -55,7 +120,7 @@ public class ServletModifierProfil extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		
 		
-		// On récupère les champs
+		// On récupère les paramètres du formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -85,6 +150,7 @@ public class ServletModifierProfil extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/profil.jsp");
 		rd.forward(request, response);
+		*/
 
 
 	}
