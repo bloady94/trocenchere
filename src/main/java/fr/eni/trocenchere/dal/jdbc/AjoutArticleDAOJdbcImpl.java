@@ -5,14 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
-import fr.eni.trocenchere.connexion.ConnectionProvider;
+import fr.eni.trocenchere.bo.Categorie;
+import fr.eni.trocenchere.bo.Utilisateur;
 import fr.eni.trocenchere.dal.AjoutArticleDAO;
+import fr.eni.trocenchere.dal.CodesResultatDAL;
 
 
 public class AjoutArticleDAOJdbcImpl implements AjoutArticleDAO{
@@ -52,7 +53,38 @@ public class AjoutArticleDAOJdbcImpl implements AjoutArticleDAO{
 	}
 
 
-
+	public List<ArticleVendu> selectByCategorieArticle(String LibCat) throws BusinessException { 
+		List<ArticleVendu> articles = null;
+		ArticleVendu article = null;
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) { PreparedStatement pstmt = cnx.prepareStatement(SELECT_BY_CATEGORIE);
+		pstmt.setString(1, LibCat);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) { Integer noArticle = rs.getInt(1);
+		String nomArticle = rs.getString(2);
+		String description = rs.getString(3);
+		LocalDate debutEnchere = null;
+		rs.getDate(4);
+		
+		if (!rs.wasNull()) { debutEnchere = rs.getDate(4).toLocalDate();
+		} LocalDate finEnchere = null;
+		rs.getDate(5);
+		if (!rs.wasNull()) { finEnchere = rs.getDate(5).toLocalDate();
+		}
+		Integer prixInitial = rs.getInt(6);
+		Integer NoUtililisateur = rs.getInt(7);
+		Utilisateur utilisateur = (Utilisateur) new Utilisateur().selectByIdUtilisateur(NoUtililisateur);
+		Categorie categorie = new Categorie(rs.getInt(9), LibCat);
+		
+		article = new ArticleVendu(noArticle, nomArticle, description, debutEnchere, finEnchere, prixInitial, utilisateur, categorie);
+		
+		if (articles == null) { articles = new ArrayList<ArticleVendu>();
+		} articles.add(article);
+		} } catch (Exception e) { e.printStackTrace(); BusinessException businessException = new BusinessException();
+		businessException.ajouterErreur(CodesResultatDAL.SELECT_BY_NOM_ECHEC); throw businessException; } return articles; }
+	
+	
 	@Override
 	public void ajoutarticle(ArticleVendu articleVendu) throws BusinessException {
 		// TODO Auto-generated method stub

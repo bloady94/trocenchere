@@ -68,7 +68,8 @@ public class ServletAjoutArticle extends HttpServlet {
 	      if(NoUtilisateur == null) {
 	    	  response.sendRedirect("ServletConnexion");
 	      }
-	      else { try { ListCategorie = categorieManager.selectAllCategorie(); 
+	      else { 
+	    	  try { ListCategorie = categorieManager.selectAllCategorie(); 
 	      request.setAttribute(LIST_CATEGORIE, ListCategorie); 
 	      NoUtilisateur = (Integer) request.getSession().getAttribute("id"); 
 	      utilisateur = utilisateurManager.selectParNoUtilisateur(NoUtilisateur); 
@@ -150,7 +151,7 @@ public class ServletAjoutArticle extends HttpServlet {
         articleVendu.setPhoto(photo);
         
         ArticleVendu article1 = new ArticleVendu(nom, description, debutEnchere, 
-				finEnchere, prixInitial, utilisateur, categorie, retrait );
+				finEnchere, prixInitial, utilisateur, categorie, retrait);
         
         } 
         retrait = new Retrait(rue,codePostal,ville);
