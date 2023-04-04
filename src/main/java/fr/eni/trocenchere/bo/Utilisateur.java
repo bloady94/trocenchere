@@ -75,6 +75,11 @@ public class Utilisateur {
 	
 	// Les getters et les setters :
 	
+	public Utilisateur(String pseudo2, String nom2, String prenom2, String email2, String telephone2, String rue2,
+			String codePostal2, String ville2, String motDePasseActuel, String nouveauMDP) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getNoUtilisateur() {
 		return noUtilisateur;
 	}
