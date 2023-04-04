@@ -37,9 +37,10 @@
 	<div class="subheader">
 		<h2>Liste des enchères</h2>
 		<form method="post" action="./ServletFiltre">
-			<label for="filtres">Filtres : </label> <input type="search"
-				value="Le nom de l'article contient"> <label for="categorie">Catégorie
-				: </label> <select>
+			<label for="filtres">Filtres : </label> 
+			<input type="search" value="Le nom de l'article contient"> 
+			<label for="categorie">Catégorie : </label> 
+			<select>
 				<option>Informatique</option>
 				<option>Ameublement</option>
 				<option>Vêtement</option>

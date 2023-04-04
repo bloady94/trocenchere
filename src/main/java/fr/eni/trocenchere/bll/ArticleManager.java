@@ -7,12 +7,17 @@ import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Categorie;
 import fr.eni.trocenchere.bo.Utilisateur;
-import fr.eni.trocenchere.dal.jdbc.ArticleDAOJdbcImpl;
+import fr.eni.trocenchere.dal.ArticleDAO;
+import fr.eni.trocenchere.dal.DAOFactory;
 
 
 public class ArticleManager {
 	
-	private ArticleDAOJdbcImpl articleDAO;
+	private ArticleDAO articleDAO;
+	
+	public ArticleManager() {
+		this.articleDAO = DAOFactory.getArticleDAO();
+	}
 
 	public ArticleVendu ajoutArticle(  String nomArticle, String description, LocalDate debutEnchere, LocalDate finEnchere,
 			Integer prixInitial, Integer prixVente, Utilisateur utilisateur, Categorie categorie) throws BusinessException {

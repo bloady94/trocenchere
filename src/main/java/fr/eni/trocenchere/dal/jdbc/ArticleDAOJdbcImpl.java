@@ -18,7 +18,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String INSERT_ARTICLEVENDU = "INSERT INTO articlevendu (nom, description, date_debut_enchere, date_fin_enchere, "
 			+ "prix_initial, Utilisateur_no_utilisateur, Categorie_no_categorie)" + "VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String SELECT_ARTICLES = "SELECT nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie FROM articlevendu";
+	private static final String SELECT_ARTICLES = "SELECT no_article, nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie FROM articlevendu";
 
 	
 	@Override
@@ -64,13 +64,25 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                 
             	Integer noArticle = rs.getInt("no_article");
                 String articleNom = rs.getString("nom");
-                String articleDescription = rs.getString("dscription");
+                String articleDescription = rs.getString("description");
                 LocalDate articleDateDebut = rs.getDate("date_debut_enchere").toLocalDate();
                 LocalDate articleDateFin = rs.getDate("date_fin_enchere").toLocalDate();
                 Integer prixInitial = rs.getInt("prix_initial");
                 Integer prixFinal = rs.getInt("prix_vente");
-                Utilisateur noUtilisateur = (Utilisateur) rs.getObject("Utilisateur_no_utilisateur");
-                Categorie noCategorie = (Categorie) rs.getObject("Categorie_no_categorie");
+               
+                
+               int noUtilisateur =  rs.getInt("Utilisateur_no_utilisateur");
+                
+               	// TODO UtilisateurDAO utilDAO = UtilisateurDAOJdbcImpl();
+               			
+               //Utilisateur util = utilDAO.seletcByID(noUtilisateur);
+               	
+                int noCategorie = rs.getInt("Categorie_no_categorie");
+                
+             // TODO CategorieDAO categorieDAO = CategorieDAOJdbcImpl();
+       			
+                //Categorie categorie = categorieDAO.seletcByID(noCategorie);
+                
                 // ETAPE 2 : au besoin, on créé un nouveau repas courant
                 if(articleTest.getNoArticle() == null){ // factorisable également pour n'avoir qu'un seul if
                     articleTest.setNomArticle(articleNom); 
@@ -79,8 +91,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                     articleTest.setFinEnchere(articleDateFin); 
                     articleTest.setPrixInitial(prixInitial); 
                     articleTest.setPrixFinal(prixFinal); 
-                    articleTest.setUtilisateur(noUtilisateur); 
-                    articleTest.setCategorie(noCategorie); 
+                   // articleTest.setUtilisateur(util); 
+                   // articleTest.setCategorie(categorie); 
                     listeArticles.add(articleTest);
                 } else if(!noArticle.equals(articleTest.getNoArticle())){
                 	articleTest = new ArticleVendu();
@@ -90,8 +102,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                     articleTest.setFinEnchere(articleDateFin); 
                     articleTest.setPrixInitial(prixInitial); 
                     articleTest.setPrixFinal(prixFinal); 
-                    articleTest.setUtilisateur(noUtilisateur); 
-                    articleTest.setCategorie(noCategorie);
+                   // articleTest.setUtilisateur(util); 
+                   // articleTest.setCategorie(categorie);
                 	listeArticles.add(articleTest);
                 }
             }
