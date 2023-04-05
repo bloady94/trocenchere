@@ -18,6 +18,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String INSERT_ARTICLEVENDU = "INSERT INTO articlevendu (nom, description, date_debut_enchere, date_fin_enchere, "
 			+ "prix_initial, Utilisateur_no_utilisateur, Categorie_no_categorie)" + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+	
 	private static final String SELECT_ARTICLES = "SELECT no_article, nom, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, Utilisateur_no_utilisateur, Categorie_no_categorie FROM articlevendu";
 
 	@Override
@@ -70,7 +71,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 				Integer noUtilisateur = rs.getInt("Utilisateur_no_utilisateur");
 				ProfilDAOJdbcImpl profilDAO = new ProfilDAOJdbcImpl();
-				Utilisateur util = profilDAO.selectUtilisateurByID(noUtilisateur);
+				Utilisateur util = profilDAO.selectUtilisateurByNo(noUtilisateur);
 
 				Integer noCategorie = rs.getInt("Categorie_no_categorie");
 				CategorieDAOJdbcImpl categorieDAO = new CategorieDAOJdbcImpl();

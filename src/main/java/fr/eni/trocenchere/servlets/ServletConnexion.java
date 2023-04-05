@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
 import fr.eni.trocenchere.bll.ConnexionManager;
+import fr.eni.trocenchere.bll.ProfilManagerImpl;
 import fr.eni.trocenchere.bll.singleton.ConnexionSing;
 import fr.eni.trocenchere.bo.Utilisateur;
 
@@ -53,21 +54,9 @@ public class ServletConnexion extends HttpServlet {
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("MotDePasse");
 		
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
 		
 		Utilisateur user = new Utilisateur();
 		
-		user.setNom(nom);
-		user.setPrenom(prenom);
-		user.setTelephone(telephone);
-		user.setRue(rue);
-		user.setCodePostal(codePostal);
-		user.setVille(ville);
 		
 		user.setEmail(identifiant); 
 		user.setPseudo(identifiant);
@@ -76,13 +65,20 @@ public class ServletConnexion extends HttpServlet {
 		
 		// Création de dao de type ConnexionManager, On insère dedans l'instance de la singleton.
 		ConnexionManager dao = ConnexionSing.getInstance();
+		ProfilManagerImpl dao2 = new ProfilManagerImpl();
+		
 		
 		try {
 			user = dao.authentification(identifiant, motDePasse);
+			user = dao2.selectUtilisateurByMDP(motDePasse);
+
+			
+			
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		if (user !=null) {
 			response.sendRedirect("/trocenchere/jsp/index.jsp");
