@@ -80,7 +80,7 @@ public class ServletAjoutArticle extends HttpServlet {
 	      }
 	      
 		//=> setattribute List<Categorie>
-		RequestDispatcher rd = request.getRequestDispatcher("/jsp/ajoutArticle.jsp"); rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/ajoutArticle.jsp"); rd.forward(request, response);
 		
 	}
 

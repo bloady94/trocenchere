@@ -44,7 +44,7 @@ public class ServletModifierProfil extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("utilisateur", utilisateur);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -57,10 +57,10 @@ public class ServletModifierProfil extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 		
-		session.getAttribute("utilisateur"); // manque utilisateur à rajouter en paramètre
+		session.getAttribute("utilisateur"); // manque utilisateur ï¿½ rajouter en paramï¿½tre
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-		// Récupération des paramètres du formulaire
+		// Rï¿½cupï¿½ration des paramï¿½tres du formulaire
 		utilisateur.setPseudo(request.getParameter("pseudo"));
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -70,22 +70,22 @@ public class ServletModifierProfil extends HttpServlet {
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
 		
-		//TODO attention gestion différente
+		//TODO attention gestion diffï¿½rente
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
 		String nouveauMDP = request.getParameter("nouveauMDP");
 		String confirmationMDP = request.getParameter("confirmationMDP");
 
-		// J'envoie les paramètres récup dans la bll pour faire les vérifications et
+		// J'envoie les paramï¿½tres rï¿½cup dans la bll pour faire les vï¿½rifications et
 		// l'update
 
-		// Ma méthode updateUtilisateur a un utilisateur en paramètre donc création d'un
-		// user et on met dedans tous les paramètres du formulaire.
+		// Ma mï¿½thode updateUtilisateur a un utilisateur en paramï¿½tre donc crï¿½ation d'un
+		// user et on met dedans tous les paramï¿½tres du formulaire.
 		Utilisateur user = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
 				motDePasseActuel);
 
 		
 
-		// Il faut que je trouve un moyen d'envoyer user et les paramètres à la bll
+		// Il faut que je trouve un moyen d'envoyer user et les paramï¿½tres ï¿½ la bll
 		try {
 			ModifierProfilManager managerProfil = ModifierProfilManagerSingl.getInstance();
 			managerProfil.UpdateUtilisateur(utilisateur, nouveauMDP);
@@ -95,7 +95,7 @@ public class ServletModifierProfil extends HttpServlet {
 		}
 
 		if (user == null) {
-			request.setAttribute("errorMessage", "problème, c'est tout ce que je vais te dire car pas d'inspi...");
+			request.setAttribute("errorMessage", "problï¿½me, c'est tout ce que je vais te dire car pas d'inspi...");
 		}
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");

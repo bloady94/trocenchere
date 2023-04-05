@@ -52,7 +52,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	}
 	
         // Créez une instance de RequestDispatcher pour votre JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/index.jsp");
         
         // Invoquez la méthode forward() de RequestDispatcher pour exécuter votre JSP
         dispatcher.forward(request, response);
