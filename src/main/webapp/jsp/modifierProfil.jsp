@@ -14,37 +14,37 @@
 		<form method="post" action="${pageContext.request.contextPath}/ServletModifierProfil">
 			<div>
 				<label for="pseudo">Pseudo :</label>
-					<input type="text" name="pseudo" />${utilisateur.pseudo}<br>
+					<input type="text" name="pseudo" /><br>
 							
 				<label for="prenom">Prénom :</label>
-					<input type="text" name="prenom" />${utilisateur.prenom}<br>
+					<input type="text" name="prenom" /><br>
 							
 				<label for="telephone">Téléphone :</label>
-					<input type="text" name="telephone" />${utilisateur.telephone}<br>
+					<input type="text" name="telephone" /><br>
 							
 				<label for="codePostal">Code postal :</label>
-					<input type="text" name="codePostal" />${utilisateur.codePostal}<br>
+					<input type="text" name="codePostal" /><br>
 							
 				<label for="motDePasseActuel">Mot de passe actuel :</label>
-					<input type="password" name="motDePasseActuel" />${utilisateur.pseudo}<br>
+					<input type="password" name="motDePasseActuel" /><br>
 				
 				<label for="nouveauMDP">Nouveau mot de passe :</label>
-					<input type="password" name="nouveauMDP" />${utilisateur.pseudo}<br>
+					<input type="password" name="nouveauMDP" /><br>
 			</div>
 			
 			
 			<div>
 				<label for="nom">Nom :</label>
-					<input type="text" name="nom" />${utilisateur.pseudo}<br>
+					<input type="text" name="nom" /><br>
 							
 				<label for="email">Email :</label>
-					<input type="text" name="email" />${utilisateur.pseudo}<br>
+					<input type="text" name="email" /><br>
 							
 				<label for="rue">Rue :</label>
-					<input type="text" name="rue" />${utilisateur.pseudo}<br>
+					<input type="text" name="rue" /><br>
 							
 				<label for="ville">Ville :</label>
-					<input type="text" name="ville" />${utilisateur.pseudo}<br>
+					<input type="text" name="ville" /><br>
 							
 				<label for="confirmationMDP">Confirmation :</label>
 					<input type="password" name="confirmationMDP" /><br>
