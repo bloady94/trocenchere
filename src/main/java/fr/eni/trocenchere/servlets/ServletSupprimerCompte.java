@@ -51,8 +51,8 @@ public class ServletSupprimerCompte extends HttpServlet {
 			    ResultSet resultSet = null;
 
 			    try {
-			      Class.forName("com.mysql.jdbc.Driver");
-			      connection = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
+			      //Class.forName("com.mysql.jdbc.Driver");
+			      //connection = DriverManager.getConnection(jdbcUrl, jdbcUsername, jdbcPassword);
 
 			      // Vérifier que l'utilisateur existe avant de supprimer son profil
 			      String sqlSelect = "SELECT * FROM utilisateurs WHERE id = ?";
@@ -69,7 +69,7 @@ public class ServletSupprimerCompte extends HttpServlet {
 			      }
 
 			      response.sendRedirect(request.getContextPath() + "/trocenchere/src/main/webapp/jsp/supprimerCompte.jsp");
-			    } catch (BusinessException | SQLException e) {
+			    } catch (IOException | SQLException e) {
 			      e.printStackTrace();
 			    } finally {
 			      try {

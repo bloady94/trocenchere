@@ -23,8 +23,6 @@ header > a {
 	color : white;
 }
 
-
-
 .subheader {
 	display: flex;
 	flex-direction: column;
@@ -87,6 +85,6 @@ select {
 }
 
 .formulaire {
-	display: flex;
-	
+	display: flex;	
 }
+
