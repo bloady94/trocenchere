@@ -84,7 +84,7 @@ public class ServletModifierProfil extends HttpServlet {
 
 		// Ma m�thode updateUtilisateur a un utilisateur en param�tre donc cr�ation d'un
 		// user et on met dedans tous les param�tres du formulaire.
-		Utilisateur user = new Utilisateur(utilisateur);
+		// Utilisateur user = new Utilisateur(utilisateur);
 
 		
 
@@ -97,9 +97,7 @@ public class ServletModifierProfil extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		if (user == null) {
-			request.setAttribute("errorMessage", "probl�me, c'est tout ce que je vais te dire car pas d'inspi...");
-		}
+
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
 		dispatcher.forward(request, response);
