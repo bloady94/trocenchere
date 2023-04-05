@@ -15,7 +15,7 @@ import fr.eni.trocenchere.bll.ConnexionManager;
 import fr.eni.trocenchere.bll.InscriptionManager;
 import fr.eni.trocenchere.bll.ModifierProfilManager;
 import fr.eni.trocenchere.bll.singleton.ConnexionSing;
-import fr.eni.trocenchere.bll.singleton.ModifierSing;
+import fr.eni.trocenchere.bll.singleton.ModifierProfilManagerSingl;
 import fr.eni.trocenchere.bo.Utilisateur;
 
 /**
@@ -25,13 +25,11 @@ import fr.eni.trocenchere.bo.Utilisateur;
 public class ServletModifierProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private ModifierSing modifierSing;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletModifierProfil() {
-		modifierSing = new ModifierSing();
 
 	}
 
@@ -42,6 +40,10 @@ public class ServletModifierProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession(true);
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		request.setAttribute("utilisateur", utilisateur);
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -54,10 +56,12 @@ public class ServletModifierProfil extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
+		
 		session.getAttribute("utilisateur"); // manque utilisateur à rajouter en paramètre
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
 		// Récupération des paramètres du formulaire
-		String pseudo = request.getParameter("pseudo");
+		utilisateur.setPseudo(request.getParameter("pseudo"));
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
@@ -65,6 +69,8 @@ public class ServletModifierProfil extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
+		
+		//TODO attention gestion différente
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
 		String nouveauMDP = request.getParameter("nouveauMDP");
 		String confirmationMDP = request.getParameter("confirmationMDP");
@@ -74,29 +80,26 @@ public class ServletModifierProfil extends HttpServlet {
 
 		// Ma méthode updateUtilisateur a un utilisateur en paramètre donc création d'un
 		// user et on met dedans tous les paramètres du formulaire.
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-				motDePasseActuel, nouveauMDP);
+		Utilisateur user = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
+				motDePasseActuel);
 
-		ModifierProfilManager dao = modifierSing.getInstance();
+		
 
 		// Il faut que je trouve un moyen d'envoyer user et les paramètres à la bll
 		try {
-			user = dao.UpdateUtilisateur(user, pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-					motDePasseActuel, nouveauMDP);
+			ModifierProfilManager managerProfil = ModifierProfilManagerSingl.getInstance();
+			managerProfil.UpdateUtilisateur(utilisateur, nouveauMDP);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		if (user != null) {
-			response.sendRedirect("/trocenchere/jsp/profil.jsp");
-
-		} else {
+		if (user == null) {
 			request.setAttribute("errorMessage", "problème, c'est tout ce que je vais te dire car pas d'inspi...");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
-			dispatcher.forward(request, response);
-
 		}
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
+		dispatcher.forward(request, response);
 
 	}
 
