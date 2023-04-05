@@ -43,6 +43,14 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	cursor: pointer;
+}
+
+input:hover {
+	cursor: pointer;
+}
+
 header > a::after {
   content: '';
   position: absolute;
