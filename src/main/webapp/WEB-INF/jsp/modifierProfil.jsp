@@ -7,9 +7,9 @@
 <link href="css/styles.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
-
+	<header>
 	<h1>ENI-Enchères</h1>
-	
+	</header>
 	<div>
 		<form method="post" action="${pageContext.request.contextPath}/ServletModifierProfil">
 			<div>

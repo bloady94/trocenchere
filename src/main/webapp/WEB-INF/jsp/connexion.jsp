@@ -9,43 +9,35 @@
 </head>
 
 <body>
-<h1>ENI-Enchères</h1>
+<header>
+<h1>ENI-Enchères</h1>		
+</header>	
 
-		<c:if test="${!empty errorMessage}">
-			<div class="alert alert-danger" role="alert">
-			  <strong>Erreur!</strong>
-			  <ul>
-			  	${errorMessage}
-			  </ul>
-			</div>
-		</c:if>
-		
-		
-	<div>
 		<form method="post" action="/trocenchere/ServletConnexion">
 	
-			<div>
+			<div class="subheader">
 			<label for="identifiant">Identifiant :</label>
 				<input type="text" name="identifiant" /><br>
 			
 			 <label for="MotDePasse">Mot de passe :</label>
 			 	<input type="password" name="MotDePasse" /> <br>
 			
-			</div>
-			
-			<div>
+
 			<a href="/ServletConnexion"><input type="submit" value="Connexion" /></a>
+			<div class="seSouvenirDeMoi">
 			 <input type="checkbox" name="SeSouvenir" value="SeSouvenirDeMoi">
+			 
 	    		<label for="souvenirDeMoi">Se souvenir de moi</label>
+	    		</div>
 	    		<a href="#"> Mot de passe oublié </a>
 			
+
 			</div>
 		 	
 		</form>
-	
+			<a href="${pageContext.request.contextPath}/ServletRedirectionInscription"> <input type="submit" value="Créer un compte" /></a>
 		
-		<a href="http://localhost:8080/trocenchere/jsp/inscription.jsp"> <input type="submit" value="Créer un compte" /></a>
-	</div>
+
 	
 	
 </body>

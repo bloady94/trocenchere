@@ -40,6 +40,7 @@ public class ServletConnexion extends HttpServlet {
 
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
 	    dispatcher.forward(request, response);
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 	}
 

@@ -61,7 +61,7 @@ public class ServletTestInscription extends HttpServlet {
 		String motDePasseConfirmation=request.getParameter("confirmationMDP");
 		
 		
-		// Création d'un nouvel utilisateur
+		// Crï¿½ation d'un nouvel utilisateur
 		Utilisateur user = new Utilisateur();
 		
 		// Crï¿½ation de dao de type ConnexionManager, On insï¿½re dedans l'instance de la singleton.
@@ -78,7 +78,7 @@ public class ServletTestInscription extends HttpServlet {
 		
 		if (user !=null) {
 		
-			response.sendRedirect("/trocenchere/jsp/index.jsp");
+			response.sendRedirect("/InitJspServlet");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("utilisateur", user);
 			

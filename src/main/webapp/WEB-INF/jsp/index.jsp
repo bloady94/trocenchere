@@ -3,7 +3,8 @@
 <%@page import="fr.eni.trocenchere.bo.ArticleVendu"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,8 @@
 		if (connected == false) {
 		%>
 
-		<a href="http://localhost:8080/trocenchere/jsp/connexion.jsp">S'inscrire
+		<a
+			href="${pageContext.request.contextPath}/ServletRedirectionConnexion">S'inscrire
 			- Se connecter</a>
 		<%
 		} else {
@@ -37,10 +39,9 @@
 	<div class="subheader">
 		<h2>Liste des enchères</h2>
 		<form method="post" action="./ServletFiltre">
-			<label for="filtres">Filtres : </label> 
-			<input type="search" value="Le nom de l'article contient"> 
-			<label for="categorie">Catégorie : </label> 
-			<select>
+			<label for="filtres">Filtres : </label> <input type="search"
+				value="Le nom de l'article contient"> <label for="categorie">Catégorie
+				: </label> <select>
 				<option>Informatique</option>
 				<option>Ameublement</option>
 				<option>Vêtement</option>
@@ -57,22 +58,38 @@
 			for (ArticleVendu articleVendu : listeArticles) {
 		%>
 		<div class="article">
-		<h4>Nom de l'article </h4>
-		<p><%=articleVendu.getNomArticle()%></p>
-		<h4>Description </h4>
-		<p><%=articleVendu.getDescription()%></p>
-		<h4>Proposé à l'enchère le </h4>
-		<p><%=articleVendu.getDebutEnchere()%></p>
-		<h4>Fin de l'enchère prévue le </h4>
-		<p><%=articleVendu.getFinEnchere()%></p>
-		<h4>Mise à prix </h4>
-		<p><%=articleVendu.getPrixInitial()%></p>
-		<h4>Enchère actuelle </h4>
-		<p><%=articleVendu.getPrixFinal()%></p>
-		<h4>Vendeur </h4>
-		<p><%=articleVendu.getUtilisateur().getPseudo()%></p>
-		<h4>Catégorie </h4>
-		<p><%=articleVendu.getCategorie().getLibelle()%></p>
+			<div class="ligneArticle">
+				<h3>Nom de l'article</h3>
+				<p><%=articleVendu.getNomArticle()%></p>
+			</div>
+			<!-- 			<div class="ligneArticle"> -->
+			<!-- 				<h4>Description</h4> -->
+			<%-- 				<p><%=articleVendu.getDescription()%></p> --%>
+			<!-- 			</div> -->
+			<!-- 			<div class="ligneArticle"> -->
+			<!-- 				<h4>Proposé à l'enchère le</h4> -->
+			<%-- 				<p><%=articleVendu.getDebutEnchere()%></p> --%>
+			<!-- 			</div> -->
+			<div class="ligneArticle">
+				<h3>Fin de l'enchère prévue le</h3>
+				<p><%=articleVendu.getFinEnchere()%></p>
+			</div>
+			<!-- 			<div class="ligneArticle"> -->
+			<!-- 				<h4>Mise à prix</h4> -->
+			<%-- 				<p><%=articleVendu.getPrixInitial()%></p> --%>
+			<!-- 			</div> -->
+			<div class="ligneArticle">
+				<h3>Enchère actuelle</h3>
+				<p><%=articleVendu.getPrixFinal()%></p>
+			</div>
+			<div class="ligneArticle">
+				<h3>Vendeur</h3>
+				<p><%=articleVendu.getUtilisateur().getPseudo()%></p>
+			</div>
+			<div class="ligneArticle">
+				<h3>Catégorie</h3>
+				<p><%=articleVendu.getCategorie().getLibelle()%></p>
+			</div>
 		</div>
 		<%
 		}
