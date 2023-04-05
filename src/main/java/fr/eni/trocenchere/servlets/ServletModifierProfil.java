@@ -44,7 +44,7 @@ public class ServletModifierProfil extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("utilisateur", utilisateur);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -62,10 +62,15 @@ public class ServletModifierProfil extends HttpServlet {
 
 		// R�cup�ration des param�tres du formulaire
 		utilisateur.setPseudo(request.getParameter("pseudo"));
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
+		utilisateur.setPrenom(request.getParameter("prenom"));
+		utilisateur.setNom(request.getParameter("nom"));
+		utilisateur.setEmail(request.getParameter("email"));
+		utilisateur.setTelephone(request.getParameter("telephone"));
+		utilisateur.setRue(request.getParameter("telephone"));
+		
+
+
+
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
