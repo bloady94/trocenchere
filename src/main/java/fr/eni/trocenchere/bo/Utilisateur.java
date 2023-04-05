@@ -78,10 +78,14 @@ public class Utilisateur {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Utilisateur(Utilisateur utilisateur) {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	// Les getters et les setters :
 	
+
 
 
 	public Integer getNoUtilisateur() {

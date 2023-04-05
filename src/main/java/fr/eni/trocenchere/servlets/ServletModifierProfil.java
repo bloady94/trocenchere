@@ -66,14 +66,13 @@ public class ServletModifierProfil extends HttpServlet {
 		utilisateur.setNom(request.getParameter("nom"));
 		utilisateur.setEmail(request.getParameter("email"));
 		utilisateur.setTelephone(request.getParameter("telephone"));
-		utilisateur.setRue(request.getParameter("telephone"));
+		utilisateur.setRue(request.getParameter("rue"));
+		utilisateur.setCodePostal(request.getParameter("codePostal"));
+		utilisateur.setMotDePasse(request.getParameter("motDePasseActuel"));
+		utilisateur.setVille(request.getParameter("ville"));
+		
 		
 
-
-
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("codePostal");
-		String ville = request.getParameter("ville");
 		
 		//TODO attention gestion diff�rente
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
@@ -85,8 +84,7 @@ public class ServletModifierProfil extends HttpServlet {
 
 		// Ma m�thode updateUtilisateur a un utilisateur en param�tre donc cr�ation d'un
 		// user et on met dedans tous les param�tres du formulaire.
-		Utilisateur user = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville,
-				motDePasseActuel);
+		Utilisateur user = new Utilisateur(utilisateur);
 
 		
 
