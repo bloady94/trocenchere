@@ -2,7 +2,7 @@
 
 
 body {
-	background-image: url('wallpaperEnchereFlou.png');
+	background-image: url('jenAiMarre.png');
 	min-height: 100vh;
 	min-width: 90vw;
 	overflow : scroll;
@@ -46,6 +46,7 @@ a {
 .article {
 	display: flex;
 	flex-direction: column;
+	flex-wrap: wrap;
 	background-color: white; 
 	margin : 10vw;
 	padding : 5vw;
