@@ -1,6 +1,8 @@
 package fr.eni.trocenchere.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.trocenchere.BusinessException;
+import fr.eni.trocenchere.bll.ArticleManager;
 import fr.eni.trocenchere.bll.ConnexionManager;
 import fr.eni.trocenchere.bll.ProfilManagerImpl;
 import fr.eni.trocenchere.bll.singleton.ConnexionSing;
+import fr.eni.trocenchere.bo.ArticleVendu;
 import fr.eni.trocenchere.bo.Utilisateur;
 
 /**
@@ -51,6 +55,27 @@ public class ServletConnexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
 
+		List<Integer> listeCodesErreur=new ArrayList<>();
+
+		if(listeCodesErreur.size()>0)
+		{
+			request.setAttribute("listeCodesErreur",listeCodesErreur);
+		}
+		else
+		{
+			try {
+				ArticleManager articleManager = new ArticleManager();
+				List<ArticleVendu> listeArticles=new ArrayList<>();
+
+				listeArticles.addAll(articleManager.selectionnerTousLesArticles());
+
+				request.setAttribute("listeArticles", listeArticles);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+				request.setAttribute("listeCodesErreur",e.getListeCodesErreur());
+			}
+		}
+		
 		// On récupère les données entrées par l'utilisateur dans la page JSP
 		String identifiant = request.getParameter("identifiant");
 		String motDePasse = request.getParameter("MotDePasse");
@@ -82,10 +107,11 @@ public class ServletConnexion extends HttpServlet {
 		
 		
 		if (user !=null) {
-			response.sendRedirect("/trocenchere/jsp/index.jsp");
+			//response.sendRedirect("/trocenchere/jsp/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/index.jsp");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("utilisateur", user);
-			
+			dispatcher.forward(request, response);
 		}else {
 			request.setAttribute("errorMessage", "Identifiant ou mot de passe incorrect.");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/connexion.jsp");
