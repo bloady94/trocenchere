@@ -10,7 +10,7 @@
 	<h1>ENI-Enchères</h1>
 	
 	<div>
-		<form method="post" action="./Mettre le nom de la servlet">
+		<form method="post" action="${pageContext.request.contextPath}/ServletModifierProfil">
 			<div>
 				<label for="pseudo">Pseudo :</label>
 					<input type="text" name="pseudo" /><br>
