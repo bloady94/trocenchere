@@ -71,12 +71,12 @@ public class ServletAjoutArticle extends HttpServlet {
 	    	  response.sendRedirect("ServletConnexion");
 	      }
 	      else { 
-	    	  try { ListCategorie = CategorieManager.selectArticleVendu(); 
+	    	  try { ListCategorie = CategorieManager.selectArticles(); 
 	      request.setAttribute(LIST_CATEGORIE, ListCategorie); 
 	      
 	      NoUtilisateur = (Integer) request.getSession().getAttribute("id"); 
 	      utilisateur.setNoUtilisateur(NoUtilisateur); 
-	      request.setAttribute(UTILISATEUR, utilisateur); } catch (BusinessException e1) { e1.printStackTrace(); }
+	      request.setAttribute(UTILISATEUR, utilisateur); } catch (Exception e1) { e1.printStackTrace(); }
 	      }
 	      
 		//=> setattribute List<Categorie>
@@ -128,35 +128,38 @@ public class ServletAjoutArticle extends HttpServlet {
         String rue = request.getParameter("rue");
         String codePostal = request.getParameter("codePostal");
         String ville = request.getParameter("ville");
-        Retrait retrait = new Retrait(rue, codePostal, ville,);
+        
+      //  ArticleVendu art = request.getParameter(" NoArticle");
+        
+       // Retrait retrait = new Retrait(rue, codePostal, ville, art);
         		
         String categorie = request.getParameter("categorie");
         
         Utilisateur utilisateur1 = new Utilisateur();
         utilisateur1.setNoUtilisateur(1);
         
-        Categorie categorie1 = new Categorie();
-        categorie.setNoCategorie(1);
+      //  Categorie categorie1 = new Categorie();
+       // categorie.setNoCategorie(1);
 
-        System.out.println(request.getParameter("imageArticle"));
+      /*  System.out.println(request.getParameter("imageArticle"));
         String test = request.getParameter("imageArticle");
         Boolean photoOuPas= true;
         
-        if (test.equals("")) { 
+     if (test.equals("")) { 
         	photoOuPas = false; }
         
         
 		ArticleVendu article = new ArticleVendu(nom, description, debutEnchere, 
-								finEnchere, prixInitial, utilisateur1, categorie, retrait,);
+								finEnchere, prixInitial, utilisateur1, categorie, retrait);
         System.out.println("articleManager" + article);
         
         if (photoOuPas) { photo = request.getParameter("imageArticle");
         ArticleVendu.setPhoto(photo);
         
         ArticleVendu article1 = new ArticleVendu(nom, description, debutEnchere, 
-				finEnchere, prixInitial, utilisateur1, categorie, retrait,);
+				finEnchere, prixInitial, utilisateur1, categorie, retrait);
         
-      } 
+        }
         retrait = new Retrait(rue,codePostal,ville);
        resultatComparaisonDates = debutEnchere.compareTo(FinEnchere); 
         
@@ -164,18 +167,21 @@ public class ServletAjoutArticle extends HttpServlet {
         }
         la date de début est postérieure à la date de fin listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR); request.setAttribute("listeCodesErreur", listeCodesErreur);
         
-        listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR);
-        request.setAttribute("listeCodesErreur", listeCodesErreur);
-          if (resultatComparaisonDates == 0) 
-        { 
-        	// les deux dates sont égales listeCodesErreur.add(CodesResultatServlets.ERREUR_DATES_IDENTIQUES); request.setAttribute("listeCodesErreur", listeCodesErreur); }else if(resultatComparaisonDates < 0){ // la date de début est antérieure à la date de fin // appel à la BLL pour ajouter Article + Retrait articleVenduManager.ajouterArticleVendu(articleVendu); retraitManager.ajouterRetrait(retrait); request.setAttribute("articleAManipuler", articleVendu); // permettre d'instancier un attribut dans la session pour le recuperer// dans une autre Servlet session.setAttribute(ARTICLE_A_MANIPULER, articleVendu); } } catch (Exception e) { e.printStackTrace(); }
-       }
+       listeCodesErreur.add(CodesResultatServlets.ERREUR_DATE_POSTERIEUR);
+       request.setAttribute("listeCodesErreur", listeCodesErreur);
+         if (resultatComparaisonDates == 0) 
+       { 
+        	 les deux dates sont égales listeCodesErreur.add(CodesResultatServlets.ERREUR_DATES_IDENTIQUES); request.setAttribute("listeCodesErreur", listeCodesErreur); }else if(resultatComparaisonDates < 0){ // la date de début est antérieure à la date de fin // appel à la BLL pour ajouter Article + Retrait articleVenduManager.ajouterArticleVendu(articleVendu); retraitManager.ajouterRetrait(retrait); request.setAttribute("articleAManipuler", articleVendu); // permettre d'instancier un attribut dans la session pour le recuperer// dans une autre Servlet session.setAttribute(ARTICLE_A_MANIPULER, articleVendu); } } catch (Exception e) { e.printStackTrace(); }
+        	 }*/
 	
-    
+	
         doGet(request, response);
        		
-        }
 	}
+	
+
+}
+
 
 
 	

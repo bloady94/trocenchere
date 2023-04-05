@@ -48,9 +48,7 @@
 	    
 	     <label for="retrait">RETRAIT</label><br>
 	     
-	   <%
-	   Utilisateur utilisateur = (Utilisateur) request.getAttribute("Utilisateur");
-	   %>
+	  
 	    
     <label for="rue">Rue :</label>
     <input type="text" name="rue" id="rue"><br>
@@ -61,20 +59,11 @@
     <label for="ville">Ville :</label>
     <input type="text" name="ville" id="ville"><br>
     
-    <% 
-    ArticleVendu ajoutArticle = (ArticleVendu) request.getAttribute("articleAManipuler");
-    if (ajoutArticle != null) { 
-    %>
-	<p style="color: green;">L'article a été ajouté avec succès</p> 
-	<% 
-	} 
-	%>
+   
+	<p style="color: green;">L'article a été ajo
 
     <input type="submit" value="Enregistrer">
     <input type="submit" value="Annuler">
-   
-   
-   
    
     
     
