@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/styles.css" rel="stylesheet">
 <title>Mon Profil</title>
 </head>
 <body>
