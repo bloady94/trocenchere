@@ -78,9 +78,11 @@ public class ServletTestInscription extends HttpServlet {
 		
 		if (user !=null) {
 		
-			response.sendRedirect("/InitJspServlet");
+			// response.sendRedirect("/InitJspServlet");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ServletRedirectionAccueil");
 			HttpSession session = request.getSession(true);
 			session.setAttribute("utilisateur", user);
+			dispatcher.forward(request, response);
 			
 		}else{
 			request.setAttribute("errorMessage", "Les mdp ne sont pas identiques");
