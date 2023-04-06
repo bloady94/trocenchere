@@ -12,32 +12,32 @@
 <header>
 <h1>ENI-Enchères</h1>		
 </header>	
-
+			<div class="subheader">
 		<form method="post" action="/trocenchere/ServletConnexion">
 	
-			<div class="subheader">
+			<div class="ligneConnexion">
 			<label for="identifiant">Identifiant :</label>
-				<input type="text" name="identifiant" /><br>
-			
-			 <label for="MotDePasse">Mot de passe :</label>
-			 	<input type="password" name="MotDePasse" /> <br>
-			
-
-			<a href="/ServletConnexion"><input type="submit" value="Connexion" /></a>
-			<div class="seSouvenirDeMoi">
-			 <input type="checkbox" name="SeSouvenir" value="SeSouvenirDeMoi">
-			 
-	    		<label for="souvenirDeMoi">Se souvenir de moi</label>
-	    		</div>
-	    		<a href="#"> Mot de passe oublié </a>
-			
-
+				<input type="text" name="identifiant" class="center"/><br>
 			</div>
+			<div class="ligneConnexion">
+			 <label for="MotDePasse">Mot de passe :</label>
+			 	<input type="password" name="MotDePasse" class="center"/> <br>
+			</div>
+
+			<a href="/ServletConnexion"><input type="submit" value="Connexion" class="modifierProfil"/></a>
+			
+			<div class="seSouvenirDeMoi">
+			<div class="checkboxEtLabel">
+			 	<input type="checkbox" name="SeSouvenir" value="SeSouvenirDeMoi" class="checkbox">
+	    	 	<label for="souvenirDeMoi">Se souvenir de moi</label>
+			</div>
+	    		<a href="#"> Mot de passe oublié </a>
+	    	</div>
 		 	
 		</form>
-			<a href="${pageContext.request.contextPath}/ServletRedirectionInscription"> <input type="submit" value="Créer un compte" /></a>
+			<a href="${pageContext.request.contextPath}/ServletRedirectionInscription"> <input type="submit" value="Créer un compte" class="modifierProfil"/></a>
 		
-
+			</div>
 	
 	
 </body>

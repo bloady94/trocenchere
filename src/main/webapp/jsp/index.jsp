@@ -46,7 +46,8 @@
 				<option>Ameublement</option>
 				<option>Vêtement</option>
 				<option>Sport et Loisirs</option>
-			</select> <input type="submit" value="Rechercher">
+			</select> 
+			<input type="submit" value="Rechercher" class="rechercher">
 		</form>
 	</div>
 

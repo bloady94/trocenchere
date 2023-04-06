@@ -13,7 +13,7 @@
 	<header>
 		<h1>ENI - Enchères</h1>
 	</header>
-	<div class="subheader">
+	<div class="profilBox">
 		<form action="<%=request.getContextPath()%>/ServletModifierProfil"
 			method="get">
 			<table>
@@ -23,43 +23,43 @@
 					Boolean connected = false;
 					if (utilisateur != null){
 					%>
-					<tr>
-						<td>Pseudo :
+					<tr class="ligneArticle">
+						<td class="titre">Pseudo :
 						<td>
-						<td><%=utilisateur.getPseudo()%></td>
+						<td class="aModifier"><%=utilisateur.getPseudo()%></td>
 					</tr>
-					<tr>
-						<td>Nom :
+					<tr class="ligneArticle">
+						<td class="titre">Nom :
 						<td>
 						<td><%=utilisateur.getNom()%></td>
 					</tr>
-					<tr>
-						<td>Prénom :
+					<tr class="ligneArticle">
+						<td class="titre">Prénom :
 						<td>
 						<td><%=utilisateur.getPrenom()%></td>
-					</tr>
-					<tr>
-						<td>Email :
+					</tr >
+					<tr class="ligneArticle">
+						<td class="titre">Email :
 						<td>
 						<td><%=utilisateur.getEmail()%></td>
 					</tr>
-					<tr>
-						<td>Téléphone :
+					<tr class="ligneArticle">
+						<td class="titre">Téléphone :
 						<td>
 						<td><%=utilisateur.getTelephone()%></td>
 					</tr>
-					<tr>
-						<td>Rue :
+					<tr class="ligneArticle">
+						<td class="titre">Rue :
 						<td>
 						<td><%=utilisateur.getRue()%></td>
 					</tr>
-					<tr>
-						<td>Code Postal :
+					<tr class="ligneArticle">
+						<td class="titre">Code Postal :
 						<td>
 						<td><%=utilisateur.getCodePostal()%></td>
 					</tr>
-					<tr>
-						<td>Ville :
+					<tr class="ligneArticle">
+						<td class="titre">Ville :
 						<td>
 						<td><%=utilisateur.getVille()%></td>
 					</tr>
@@ -72,7 +72,7 @@
 					%>
 				</tbody>
 			</table>
-			<input type="submit" value="Modifier">
+			<input type="submit" value="Modifier" class="modifierProfil">
 		</form>
 	</div>
 </body>

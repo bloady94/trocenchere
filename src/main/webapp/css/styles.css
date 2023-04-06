@@ -3,16 +3,16 @@
 
 body {
 	background-image: url('jenAiMarre.png');
+	max-width: 100vw;
 	min-height: 100vh;
-	min-width: 90vw;
-	overflow : scroll;
 	background-size: cover;
 	font-family : Century Gothic;
+	overflow:scroll;
 }
 
 header {
 	display : flex;
-	background-color: grey;
+	background: grey;
 	justify-content: space-around;
 	align-items: center;
 	box-shadow: 0 0 12px 12px white;
@@ -33,6 +33,7 @@ header > a {
 	padding: 4vw;
 	border : 2px black solid;
 	border-radius: 20px;
+	box-shadow: 0 0 12px 12px grey;
 }
 
 h1 {
@@ -47,30 +48,27 @@ a:hover {
 	cursor: pointer;
 }
 
-input:hover {
-	cursor: pointer;
-}
 
 header > a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transition: transform 0.25s ease-out;
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: white;
+	transition: transform 0.25s ease-out;
 }
 
 header > a:hover::after {
-  transform: scaleX(1);
+	transform: scaleX(1);
 }
 
 .article {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	background-color: white; 
 	margin : 10vw;
 	padding : 5vw;
@@ -87,10 +85,11 @@ header > a:hover::after {
 	align-items: center;
 	align-content : center;
 	color: grey;
+	padding: 5px;
 }
 
 .ligneArticle:nth-child(1) {
-	color: black;
+	color: black; 
 	font-weight: bold;
 }
 
@@ -102,15 +101,136 @@ input {
 	border-radius: 10px;
 	background-color: white;
 	font-family : Century Gothic;
+	padding: 4px;
+	margin: 2px;
 }
 
 select {
 	border-radius: 10px;
 	background-color: white;
 	font-family : Century Gothic;
+	padding: 5px;
+}
+
+select:hover{
+	cursor: pointer;
 }
 
 .formulaire {
-	display: flex;	
+	display: flex;
+	align-items: center;
+	margin: auto;
+	width: 70%;
+	justify-content: space-around;
+	padding: 5px;	
 }
 
+body > .listeArticles {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.profilBox {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    padding: 3em;
+    transform: translate(-50%, -50%);
+	border : 2px black solid;
+	border-radius: 20px;
+	box-shadow: 0 0 12px 12px grey;
+}
+
+td {
+	padding: 1em;
+}
+
+.modifierProfil {
+	margin: auto;
+	width: 40%;
+	margin-top: 15px;
+	display: block;
+	padding: 1em;
+	background-color: white;
+	color: black;
+	box-shadow: 0 0 1px 1px black;
+}
+
+.modifierProfil:hover {
+	cursor: pointer;
+	background-color: grey;
+	color: white;
+	transition: background 0.5s;
+}
+
+.center {
+	position: absolute;
+    left: 50%;
+    margin: 4px;
+}
+.titre {
+	color: black;
+	font-weight: bold;
+}
+
+.aModifier {
+	color: grey;
+	font-weight: normal;
+}
+
+.rechercher {
+	background-color: white;
+	color: black;
+	box-shadow: 0 0 1px 1px black;
+}
+
+.rechercher:hover {
+	cursor: pointer;
+	background-color: grey;
+	color: white;
+	transition: background 0.5s;
+}
+
+.seSouvenirDeMoi {
+	display: flex;
+	flex-direction: column;
+	margin-left: 35vw;
+	width: 40%;
+	padding: 2em;
+}
+
+.checkboxEtLabel {
+	display: flex;
+}
+
+.checkbox {
+	padding: 15em !important; 
+}
+
+.ligneConnexion {
+	margin: auto;
+	display : flex;
+	justify-content: space-between;
+	align-items: center;
+	align-content : center;
+	color: grey;
+	padding: 5px;
+	width: 20vw;
+}
+
+.quarter {
+	position: absolute;
+    left: 37%;
+    margin: 4px;
+}
+
+.threequarters {
+	position: absolute;
+    left: 59%;
+    margin: 4px;
+}
