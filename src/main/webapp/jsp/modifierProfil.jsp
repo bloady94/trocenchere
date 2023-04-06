@@ -15,51 +15,51 @@
 	<div class="subheader">
 		<form method="post" action="${pageContext.request.contextPath}/ServletModifierProfil">
 			<div class="ligneArticle">
-				<label for="pseudo">Pseudo :</label>
+				<label for="pseudo" class="titre">Pseudo :</label>
 					<input type="text" name="pseudo" value="${utilisateur.pseudo}" class="center"/><br>
 			</div>
 			<div class="ligneArticle">		
-				<label for="prenom">Prénom :</label>
+				<label for="prenom" class="titre">Prénom :</label>
 					<input type="text" name="prenom" value="${utilisateur.prenom}" class="center"/><br>
 			</div>
 			<div class="ligneArticle">			
-				<label for="telephone">Téléphone :</label>
+				<label for="telephone" class="titre">Téléphone :</label>
 					<input type="text" name="telephone" value="${utilisateur.telephone}" class="center"/><br>
 			</div>
 			<div class="ligneArticle">			
-				<label for="codePostal">Code postal :</label>
+				<label for="codePostal" class="titre">Code postal :</label>
 					<input type="text" name="codePostal" value="${utilisateur.codePostal}" class="center"/><br>
 			</div>	
 			<div class="ligneArticle">			
-				<label for="motDePasseActuel">Mot de passe actuel :</label>
+				<label for="motDePasseActuel" class="titre">Mot de passe actuel :</label>
 					<input type="password" name="motDePasseActuel" value="${utilisateur.motDePasse}" class="center"/><br>
 			</div>
 			<div class="ligneArticle">	
-				<label for="nouveauMDP">Nouveau mot de passe :</label>
+				<label for="nouveauMDP" class="titre">Nouveau mot de passe :</label>
 					<input type="password" name="nouveauMDP" class="center"/><br>
 			</div>
 			<div class="ligneArticle">
-				<label for="nom">Nom :</label>
+				<label for="nom" class="titre">Nom :</label>
 					<input type="text" name="nom" value="${utilisateur.nom}" class="center"/><br>
 			</div>	
 			<div class="ligneArticle">			
-				<label for="email">Email :</label>
+				<label for="email" class="titre">Email :</label>
 					<input type="text" name="email" value="${utilisateur.email}" class="center"/><br>
 			</div>		
 			<div class="ligneArticle">		
-				<label for="rue">Rue :</label>
+				<label for="rue" class="titre">Rue :</label>
 					<input type="text" name="rue" value="${utilisateur.rue}" class="center"/><br>
 			</div>		
 			<div class="ligneArticle">		
-				<label for="ville">Ville :</label>
+				<label for="ville" class="titre">Ville :</label>
 					<input type="text" name="ville" value="${utilisateur.ville}" class="center"/><br>
 			</div>		
 			<div class="ligneArticle">		
-				<label for="confirmationMDP">Confirmation :</label>
+				<label for="confirmationMDP" class="titre">Confirmation :</label>
 					<input type="password" name="confirmationMDP" value="" class="center"/><br>
 			</div>
 			<div class="ligneArticle">
-			<label for="credit">Crédit :</label><p class="center"><%= request.getAttribute("credit") %></p>
+			<label for="credit" class="titre">Crédit :</label><p class="center">100</p>
 			<!-- Ajouter Crédit avec le nom de crédit -->
 			</div>
 			<input type="submit" value="Enregistrer" class="modifierProfil"/>

@@ -36,6 +36,7 @@
 		}
 		%>
 	</header>
+	<div class="jAbandonne">
 	<div class="subheader">
 		<h2>Liste des enchères</h2>
 		<form method="post" action="./ServletFiltre">
@@ -101,6 +102,6 @@
 		}
 		%>
 	</div>
-
+	</div>
 </body>
 </html>

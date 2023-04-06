@@ -68,19 +68,19 @@ header > a:hover::after {
 .article {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	background-color: white; 
-	margin : 10vw;
-	padding : 5vw;
+	margin : 3em;
+	padding : 3em;
 	border : 2px black solid;
 	border-radius: 20px;
 	box-shadow: 0 0 12px 12px grey;
 	width : 20vw;
+	flex-basis: calc(33.33% - 20px);
 }
 
 .ligneArticle {
 	display : flex;
-	justify-content: center;
 	justify-content: space-between;
 	align-items: center;
 	align-content : center;
@@ -91,6 +91,13 @@ header > a:hover::after {
 .ligneArticle:nth-child(1) {
 	color: black; 
 	font-weight: bold;
+}
+
+.listeArticles {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 h3 {
@@ -123,12 +130,6 @@ select:hover{
 	width: 70%;
 	justify-content: space-around;
 	padding: 5px;	
-}
-
-body > .listeArticles {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
 }
 
 .profilBox {

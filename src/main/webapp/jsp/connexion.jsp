@@ -26,6 +26,10 @@
 
 			<a href="/ServletConnexion"><input type="submit" value="Connexion" class="modifierProfil"/></a>
 			
+			
+		 	
+		</form>
+			<a href="${pageContext.request.contextPath}/ServletRedirectionInscription"> <input type="submit" value="Créer un compte" class="modifierProfil"/></a>
 			<div class="seSouvenirDeMoi">
 			<div class="checkboxEtLabel">
 			 	<input type="checkbox" name="SeSouvenir" value="SeSouvenirDeMoi" class="checkbox">
@@ -33,9 +37,6 @@
 			</div>
 	    		<a href="#"> Mot de passe oublié </a>
 	    	</div>
-		 	
-		</form>
-			<a href="${pageContext.request.contextPath}/ServletRedirectionInscription"> <input type="submit" value="Créer un compte" class="modifierProfil"/></a>
 		
 			</div>
 	
