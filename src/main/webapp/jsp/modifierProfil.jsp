@@ -53,11 +53,7 @@
 			</div>
 			
 			
-				<%
-		Integer nbCredit = (Integer) request.getAttribute("credit");
-	%>
-	
-	Crédit :<%=nbCredit %>
+Crédit : <%= request.getAttribute("credit") %>
 			<!-- Ajouter Crédit avec le nom de crédit -->
 			
 			<input type="submit" value="Enregistrer" />

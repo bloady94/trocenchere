@@ -339,7 +339,6 @@ public class EncheresDAOJdbcImpl implements EncheresDAO {
 
 	@Override
 	public void select_article(ArticleVendu articleVendu) throws BusinessException {
-		// TODO Auto-generated method stub
 		/*
 		for (ArticleVendu av : utilisateur.getListeArticles()) {
 			insert_articleVendu(av, utilisateur.getNo_utilisateur());

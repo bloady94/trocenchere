@@ -44,6 +44,8 @@ public class ServletModifierProfil extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		request.setAttribute("utilisateur", utilisateur);
 		
+
+		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -74,7 +76,7 @@ public class ServletModifierProfil extends HttpServlet {
 		
 
 		
-		//TODO attention gestion diff�rente
+
 		String motDePasseActuel = request.getParameter("motDePasseActuel");
 		String nouveauMDP = request.getParameter("nouveauMDP");
 		String confirmationMDP = request.getParameter("confirmationMDP");
@@ -93,10 +95,8 @@ public class ServletModifierProfil extends HttpServlet {
 			ModifierProfilManager managerProfil = ModifierProfilManagerSingl.getInstance();
 			managerProfil.UpdateUtilisateur(utilisateur, nouveauMDP);
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/modifierProfil.jsp");

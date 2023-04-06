@@ -32,7 +32,6 @@ public class BusinessException extends Exception {
 	}
 
 	public void ajouterErreur(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 	

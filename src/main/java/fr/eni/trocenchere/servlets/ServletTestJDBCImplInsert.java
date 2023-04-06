@@ -29,7 +29,6 @@ public class ServletTestJDBCImplInsert extends HttpServlet {
      */
     public ServletTestJDBCImplInsert() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     
@@ -62,7 +61,6 @@ public class ServletTestJDBCImplInsert extends HttpServlet {
 		try {
 			dao.insert_utilisateur(jeremie);
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +69,6 @@ public class ServletTestJDBCImplInsert extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

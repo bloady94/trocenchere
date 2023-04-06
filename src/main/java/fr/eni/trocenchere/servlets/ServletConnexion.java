@@ -101,7 +101,6 @@ public class ServletConnexion extends HttpServlet {
 			
 			
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

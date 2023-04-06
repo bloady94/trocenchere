@@ -75,11 +75,9 @@ public class Utilisateur {
 	
 	public Utilisateur(Integer noUtilisateur2, String pseudo2, String nom2, String prenom2, String email2,
 			String telephone2, String rue2, String codePostal2, String ville2, String motDePasseActuel) {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Utilisateur(Utilisateur utilisateur) {
-		// TODO Auto-generated constructor stub
 	}
 
 

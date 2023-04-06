@@ -89,17 +89,5 @@ public class InscriptionManager {
 		}
 	}
 	
-	/*
-	// TODO il faut que je termine cette methode, pour que le mdp et la confirmation soient identiques.
-	public void verifMotDePasse(String motDePasse, String confirmation, String nomParametre) {
-		while(!motDePasse.equals(confirmation)) {
-			// Cr�ation de l'exception
-			BusinessException businessException = new BusinessException();
-			
-			// On ajouter l'erreur et on pr�cise ce qu'elle renvoie
-			businessException.ajouterErreur("Tu es con ou quoi ? le " + nomParametre + " n'est pas le m�me, tu vas faire un effort maintenant !");
-		}
-	}
-	*/
 
 }
